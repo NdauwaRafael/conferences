@@ -5,7 +5,19 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes: [
-    {path: '/register', component: Register}
+    {
+        path: '*',
+        redirect: '/'
+    },
+    {
+        path: '/',
+        name: 'Welcome',
+        component: Welcome
+    },
+    {
+      path: '/register',
+      component: Register
+    }
   ]
 });
 
