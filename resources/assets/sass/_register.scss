@@ -1,0 +1,79 @@
+.register-banner{
+  background: url("/img/wk-bg-2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 90%;
+
+  .register-frm{
+    background: rgba(0,0,0,0.6);
+    color: #eeeeee;
+  }
+  .form-padding {
+    padding: 2%;
+  }
+  label {
+    color: #eeeeee;
+  }
+
+  .register-head {
+    background: #e0f2f1 ;
+    text-align: center;
+    h3{
+      color: #4caf50 ;
+    }
+
+  }
+}
+
+.transparent-register {
+  background: rgba(20,20,20,.9);
+  height: 100vh;
+
+
+  .form {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    -webkit-transition: box-shadow .5s ease;
+    -moz-transition: box-shadow .5s ease;
+    -o-transition: box-shadow .5s ease;
+    -ms-transition: box-shadow .5s ease;
+    transition: box-shadow .5s ease;
+    padding: 2%;
+    border-radius: 10px;
+    label {
+      color: #fff;
+    }
+    h3{
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0,0,0,0.3);
+      letter-spacing:1px;
+      text-align:center;
+    }
+  }
+
+  .login-form-div {
+    width: 60%;
+    margin-top: 5%;
+    margin-left: 20%;
+
+    h3{ color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+    .loginform{
+      padding: 50%;
+      box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+      -webkit-transition: box-shadow .5s ease;
+      -moz-transition: box-shadow .5s ease;
+      -o-transition: box-shadow .5s ease;
+      -ms-transition: box-shadow .5s ease;
+      transition: box-shadow .5s ease;
+      padding: 2%;
+      border-radius: 20px;
+      label {
+        color: #fff;
+      }
+    }
+
+  }
+}

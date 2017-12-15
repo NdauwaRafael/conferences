@@ -1,0 +1,40 @@
+footer, header, menu, nav, section, article{
+  display: block;
+}
+.side-navigation{
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #D3DCE6;
+  bottom: 0px;
+.navigation {
+
+  h2{
+    font-size: 24px;
+  }
+  .navigation-menu {
+    background-color: #D3DCE6;
+  }
+  .user {
+    text-align: center;
+    background: #b2dfdb ;
+    img {
+      width: 30%;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+  }
+}
+}
+
+.Agenda-left {
+  border-right: 1px solid #cccccccc;
+  li{
+    list-style: none;
+    padding: 10px;
+    text-align: left;
+    background: #a1887f;
+    margin-top: 5%;
+  }
+}
