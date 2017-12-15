@@ -1,5 +1,177 @@
 @charset "UTF-8";
 
+footer,
+header,
+menu,
+nav,
+section,
+article {
+  display: block;
+}
+
+.side-navigation {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #D3DCE6;
+  bottom: 0px;
+}
+
+.side-navigation .navigation h2 {
+  font-size: 24px;
+}
+
+.side-navigation .navigation .navigation-menu {
+  background-color: #D3DCE6;
+}
+
+.side-navigation .navigation .user {
+  text-align: center;
+  background: #b2dfdb;
+}
+
+.side-navigation .navigation .user img {
+  width: 30%;
+}
+
+.side-navigation .navigation .user h4 {
+  font-size: 20px;
+}
+
+.Agenda-left {
+  border-right: 1px solid #cccccccc;
+}
+
+.Agenda-left li {
+  list-style: none;
+  padding: 10px;
+  text-align: left;
+  background: #a1887f;
+  margin-top: 5%;
+}
+
+html,
+body {
+  min-height: 100% !important;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.welcome-banner {
+  background: url("/img/wk-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+
+.welcome-banner .centered-banner-text {
+  text-align: center;
+  padding-top: 30%;
+  color: #eeeeee;
+}
+
+.welcome-banner .background-covered {
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 99.9999999999vh;
+}
+
+.register-banner {
+  background: url("/img/wk-bg-2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 90%;
+}
+
+.register-banner .register-frm {
+  background: rgba(0, 0, 0, 0.6);
+  color: #eeeeee;
+}
+
+.register-banner .form-padding {
+  padding: 2%;
+}
+
+.register-banner label {
+  color: #eeeeee;
+}
+
+.register-banner .register-head {
+  background: #e0f2f1;
+  text-align: center;
+}
+
+.register-banner .register-head h3 {
+  color: #4caf50;
+}
+
+.transparent-register {
+  background: rgba(20, 20, 20, 0.8);
+  height: 100vh;
+}
+
+.transparent-register .form {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+          box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+  -webkit-transition: box-shadow .5s ease;
+  -webkit-transition: -webkit-box-shadow .5s ease;
+  transition: -webkit-box-shadow .5s ease;
+  transition: box-shadow .5s ease;
+  transition: box-shadow .5s ease, -webkit-box-shadow .5s ease;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.transparent-register .form label {
+  color: #bcaaa4;
+}
+
+.transparent-register .form h3 {
+  color: #d7ccc8;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.transparent-register .form input {
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.transparent-register .login-form-div {
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 20%;
+}
+
+.transparent-register .login-form-div h3 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.transparent-register .login-form-div .loginform {
+  padding: 50%;
+  -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+          box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+  -webkit-transition: box-shadow .5s ease;
+  -webkit-transition: -webkit-box-shadow .5s ease;
+  transition: -webkit-box-shadow .5s ease;
+  transition: box-shadow .5s ease;
+  transition: box-shadow .5s ease, -webkit-box-shadow .5s ease;
+  padding: 2%;
+  border-radius: 20px;
+}
+
+.transparent-register .login-form-div .loginform label {
+  color: #fff;
+}
+
 /**
  * Foundation for Sites by ZURB
  * Version 6.4.4-rc1

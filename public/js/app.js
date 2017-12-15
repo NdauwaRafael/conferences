@@ -3159,7 +3159,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'initial_signup',
@@ -3187,6 +3198,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
         return {
             initReg: {
+                fname: '',
+                lname: '',
                 email: '',
                 pass: '',
                 checkPass: ''
@@ -84805,13 +84818,13 @@ var render = function() {
   return _c("div", { staticClass: "welcome-banner" }, [
     _c("div", { staticClass: "transparent-register" }, [
       _c("div", { staticClass: "grid-x" }, [
-        _c("div", { staticClass: "large-4 cell" }),
+        _c("div", { staticClass: "large-3 cell" }),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "large-4 cell form" },
+          { staticClass: "large-6 cell form" },
           [
-            _c("h3", [_vm._v("Sign Up")]),
+            _c("h3", [_vm._v("Sign Up to Instant Conference")]),
             _vm._v(" "),
             _c(
               "el-form",
@@ -84821,6 +84834,64 @@ var render = function() {
                 attrs: { model: _vm.initReg, "label-width": "120px" }
               },
               [
+                _c(
+                  "el-form-item",
+                  {
+                    attrs: {
+                      prop: "text",
+                      label: "First Name",
+                      rules: [
+                        {
+                          required: true,
+                          message: "First Name Field Is rewuired",
+                          trigger: "blur"
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c("el-input", {
+                      model: {
+                        value: _vm.initReg.fname,
+                        callback: function($$v) {
+                          _vm.$set(_vm.initReg, "fname", $$v)
+                        },
+                        expression: "initReg.fname"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  {
+                    attrs: {
+                      prop: "text",
+                      label: "Last Name",
+                      rules: [
+                        {
+                          required: true,
+                          message: "Last Name field is required",
+                          trigger: "blur"
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c("el-input", {
+                      model: {
+                        value: _vm.initReg.lname,
+                        callback: function($$v) {
+                          _vm.$set(_vm.initReg, "lname", $$v)
+                        },
+                        expression: "initReg.lname"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
                 _c(
                   "el-form-item",
                   {
@@ -84916,7 +84987,7 @@ var render = function() {
                     _c(
                       "el-button",
                       {
-                        attrs: { type: "primary", plain: true },
+                        attrs: { type: "danger", plain: true },
                         on: {
                           click: function($event) {
                             _vm.regUser("initReg")
@@ -84924,7 +84995,11 @@ var render = function() {
                         }
                       },
                       [_vm._v("Create User")]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("el-button", { attrs: { type: "text" } }, [
+                      _vm._v("Go to Login Page")
+                    ])
                   ],
                   1
                 )
@@ -84935,7 +85010,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "large-4 cell" })
+        _c("div", { staticClass: "large-3 cell" })
       ])
     ])
   ])
