@@ -174,7 +174,10 @@ body {
 }
 
 .transparent-register .login-form-div .loginform .display-error {
-  background: #ffab91;
+  background-color: rgba(255, 0, 0, 0.3);
+  padding: 2%;
+  border-radius: 25px;
+  color: #FFFFFF;
 }
 
 @media only screen and (max-width: 40em) {

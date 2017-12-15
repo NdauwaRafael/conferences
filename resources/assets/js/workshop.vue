@@ -14,11 +14,15 @@
 
 <script>
 import Flash from './helpers/flash'
+import Auth from './store/auth'
 export default {
-
+create(){
+    Auth.initialize();
+},
   data(){
     return {
-      flash: Flash.state
+      flash: Flash.state,
+      auth: Auth.state
     }
   }
 }

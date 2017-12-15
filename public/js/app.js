@@ -3123,6 +3123,7 @@ function mergeFn (a, b) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
 //
 //
 //
@@ -3160,6 +3161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3183,8 +3185,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.error = {};
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* post */])('/api/login', this.loginForm).then(function (res) {
         if (res.data.authenticated) {
-          _this.$router.push('/login');
+          _this.$router.push('/home');
           Flash.setSuccess('You have successfully Logged In into rapid conferences');
+          __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].set(res.data.api_token, res.data.user_id);
         }
         _this.isProcessing = false;
       }).catch(function (err) {
@@ -3328,6 +3331,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
 //
 //
 //
@@ -3342,12 +3346,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  create: function create() {
+    __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].initialize();
+  },
   data: function data() {
     return {
-      flash: __WEBPACK_IMPORTED_MODULE_0__helpers_flash__["a" /* default */].state
+      flash: __WEBPACK_IMPORTED_MODULE_0__helpers_flash__["a" /* default */].state,
+      auth: __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].state
     };
   }
 });
@@ -4889,7 +4898,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4904,7 +4913,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -101028,6 +101037,33 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (router);
+
+/***/ }),
+
+/***/ "./resources/assets/js/store/auth.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: {
+        api_token: null,
+        user_id: null
+    },
+    initialize: function initialize() {
+        this.state.api_token = localStorage.getItem('api_token');
+        this.state.user_id = localStorage.getItem('user_id');
+    },
+    set: function set(user_id, api_token) {
+        localStorage.setItem('api_token', api_token);
+        localStorage.setItem('user_id', user_id);
+    },
+    remove: function remove() {
+        localStorage.removeItem('api_token');
+        localStorage.removeItem('user_id');
+
+        this.initialize();
+    }
+});
 
 /***/ }),
 

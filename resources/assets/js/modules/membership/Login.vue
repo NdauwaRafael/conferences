@@ -37,6 +37,7 @@
 
 <script>
 import {post} from '../../helpers/api'
+import Auth from '../../store/auth'
 export default {
   name: 'Login' ,
   data(){
@@ -56,8 +57,9 @@ methods: {
       post('/api/login', this.loginForm)
       .then((res)=>{
         if (res.data.authenticated) {
-           this.$router.push('/login')
+           this.$router.push('/home')
            Flash.setSuccess('You have successfully Logged In into rapid conferences');
+           Auth.set(res.data.api_token, res.data.user_id)
         }
         this.isProcessing = false
       })
