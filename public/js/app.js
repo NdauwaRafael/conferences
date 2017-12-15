@@ -3122,13 +3122,80 @@ function mergeFn (a, b) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Login'
+  name: 'Login',
+  data: function data() {
+    return {
+      loginForm: {
+        password: '',
+        email: ''
+      },
+      error: {}
+    };
+  },
+
+  methods: {
+    login: function login() {
+      var _this = this;
+
+      //initialize registration
+      this.isProcessing = true;
+      this.error = {};
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* post */])('/api/login', this.loginForm).then(function (res) {
+        if (res.data.authenticated) {
+          _this.$router.push('/login');
+          Flash.setSuccess('You have successfully Logged In into rapid conferences');
+        }
+        _this.isProcessing = false;
+      }).catch(function (err) {
+        if (err.response.status === 422) {
+          _this.error = err.response.data;
+          _this.$message.error('Oops, Regretful but an Error have occurred.');
+        }
+        _this.isProcessing = false;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3138,7 +3205,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api_js__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
 //
 //
 //
@@ -3186,67 +3254,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'initial_signup',
     data: function data() {
-        var _this = this;
 
-        var validatePass = function validatePass(rule, value, callback) {
-            if (value === '') {
-                callback(new Error('Please input the password'));
-            } else {
-                if (_this.initReg.checkPass !== '') {
-                    _this.$refs.initReg.validateField('checkPass');
-                }
-                callback();
-            }
-        };
-        var validatePass2 = function validatePass2(rule, value, callback) {
-            if (value === '') {
-                callback(new Error('Please input the password again'));
-            } else if (value !== _this.initReg.pass) {
-                callback(new Error('Two inputs don\'t match!'));
-            } else {
-                callback();
-            }
-        };
         return {
             initReg: {
+                username: '',
                 fname: '',
                 lname: '',
                 email: '',
-                pass: '',
-                checkPass: ''
-            }
+                password: '',
+                confirmed: ''
+            },
+
+            error: {},
+
+            isProcessing: false
         };
     },
 
     methods: {
-        regUser: function regUser(initReg) {
-            var _this2 = this;
+        regUser: function regUser() {
+            var _this = this;
 
-            this.$refs[initReg].validate(function (valid) {
-                if (valid) {
-                    //initialize registration
-                    _this2.isProcessing = true;
-                    _this2.error = {};
-                    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api_js__["a" /* post */])('/api/register', _this2.form).then(function (res) {
-                        if (res.resgistered) {
-                            _this2.router.push('/login');
-                        }
-                        _this2.isProcessing = false;
-                    }).catch(function (err) {
-                        if (err.respose.status === 422) {
-                            _this2.error = err.response.data;
-                        }
-                        _this2.isProcessing = false;
-                    });
-                } else {
-                    console.log('error submit!!');
-                    return false;
+            //initialize registration
+            this.isProcessing = true;
+            this.error = {};
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* post */])('/api/register', this.initReg).then(function (res) {
+                if (res.data.registered) {
+                    _this.$router.push('/login');
+                    __WEBPACK_IMPORTED_MODULE_1__helpers_flash__["a" /* default */].setSuccess('Welcome Onboard!! Your data has been Registered successfully. Just one more step, please Login!!.');
                 }
+                _this.isProcessing = false;
+            }).catch(function (err) {
+                if (err.response.status === 422) {
+                    _this.error = err.response.data;
+                    _this.$message.error('Oops, Regretful but an Error have occurred.' + err.response.data);
+                }
+                _this.isProcessing = false;
             });
         }
     }
@@ -3274,13 +3327,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      flash: __WEBPACK_IMPORTED_MODULE_0__helpers_flash__["a" /* default */].state
+    };
+  }
+});
 
 /***/ }),
 
@@ -4819,7 +4889,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4834,7 +4904,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -84880,7 +84950,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "welcome-banner" }, [
     _c("div", { staticClass: "transparent-register" }, [
-      _c("div", { staticClass: "grid-x" }, [
+      _c("div", { staticClass: "grid-x top" }, [
         _c("div", { staticClass: "large-3 cell" }),
         _vm._v(" "),
         _c(
@@ -84897,6 +84967,27 @@ var render = function() {
                 attrs: { model: _vm.initReg, "label-width": "120px" }
               },
               [
+                _c(
+                  "el-form-item",
+                  { attrs: { prop: "text", label: "User Name" } },
+                  [
+                    _vm.error.username
+                      ? _c("small", [_vm._v(_vm._s(_vm.error.username))])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      model: {
+                        value: _vm.initReg.username,
+                        callback: function($$v) {
+                          _vm.$set(_vm.initReg, "username", $$v)
+                        },
+                        expression: "initReg.username"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
                 _c(
                   "el-form-item",
                   { attrs: { prop: "text", label: "First Name" } },
@@ -84930,31 +85021,18 @@ var render = function() {
                         },
                         expression: "initReg.lname"
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.error.lname
+                      ? _c("small", [_vm._v(_vm._s(_vm.error.lname))])
+                      : _vm._e()
                   ],
                   1
                 ),
                 _vm._v(" "),
                 _c(
                   "el-form-item",
-                  {
-                    attrs: {
-                      prop: "email",
-                      label: "Email",
-                      rules: [
-                        {
-                          required: true,
-                          message: "Please input email address",
-                          trigger: "blur"
-                        },
-                        {
-                          type: "email",
-                          message: "Please input correct email address",
-                          trigger: "blur,change"
-                        }
-                      ]
-                    }
-                  },
+                  { attrs: { prop: "email", label: "Email" } },
                   [
                     _c("el-input", {
                       model: {
@@ -84964,44 +85042,33 @@ var render = function() {
                         },
                         expression: "initReg.email"
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.error.email
+                      ? _c("small", [_vm._v(_vm._s(_vm.error.email))])
+                      : _vm._e()
                   ],
                   1
                 ),
                 _vm._v(" "),
                 _c(
                   "el-form-item",
-                  {
-                    attrs: {
-                      label: "Password",
-                      prop: "pass",
-                      rules: [
-                        {
-                          required: true,
-                          message: "Please input a password",
-                          trigger: "blur"
-                        },
-                        {
-                          min: 6,
-                          max: 15,
-                          message:
-                            "Please input a valid password between 6 to 15 Characters",
-                          trigger: "blur,change"
-                        }
-                      ]
-                    }
-                  },
+                  { attrs: { label: "Password", prop: "pass" } },
                   [
                     _c("el-input", {
                       attrs: { type: "password", "auto-complete": "off" },
                       model: {
-                        value: _vm.initReg.pass,
+                        value: _vm.initReg.password,
                         callback: function($$v) {
-                          _vm.$set(_vm.initReg, "pass", $$v)
+                          _vm.$set(_vm.initReg, "password", $$v)
                         },
-                        expression: "initReg.pass"
+                        expression: "initReg.password"
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.error.password
+                      ? _c("small", [_vm._v(_vm._s(_vm.error.password))])
+                      : _vm._e()
                   ],
                   1
                 ),
@@ -85013,11 +85080,11 @@ var render = function() {
                     _c("el-input", {
                       attrs: { type: "password", "auto-complete": "off" },
                       model: {
-                        value: _vm.initReg.checkPass,
+                        value: _vm.initReg.confirmed,
                         callback: function($$v) {
-                          _vm.$set(_vm.initReg, "checkPass", $$v)
+                          _vm.$set(_vm.initReg, "confirmed", $$v)
                         },
-                        expression: "initReg.checkPass"
+                        expression: "initReg.confirmed"
                       }
                     })
                   ],
@@ -85030,19 +85097,30 @@ var render = function() {
                     _c(
                       "el-button",
                       {
-                        attrs: { type: "danger", plain: true },
+                        attrs: {
+                          disabled: _vm.isProcessing,
+                          type: "danger",
+                          plain: true
+                        },
                         on: {
                           click: function($event) {
-                            _vm.regUser("initReg")
+                            _vm.regUser()
                           }
                         }
                       },
                       [_vm._v("Create User")]
                     ),
                     _vm._v(" "),
-                    _c("el-button", { attrs: { type: "text" } }, [
-                      _vm._v("Go to Login Page")
-                    ])
+                    _c(
+                      "router-link",
+                      { attrs: { to: { path: "/login" } } },
+                      [
+                        _c("el-button", { attrs: { type: "text" } }, [
+                          _vm._v("Go to Login Page")
+                        ])
+                      ],
+                      1
+                    )
                   ],
                   1
                 )
@@ -85077,7 +85155,118 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "welcome-banner" }, [
+    _c("div", { staticClass: "transparent-register" }, [
+      _c(
+        "div",
+        { staticClass: "grid-container" },
+        [
+          _c(
+            "el-container",
+            [
+              _c("el-header"),
+              _vm._v(" "),
+              _c("el-main", [
+                _c(
+                  "div",
+                  { staticClass: "login-form-div" },
+                  [
+                    _c("h3", [_vm._v("Login")]),
+                    _vm._v(" "),
+                    _c(
+                      "el-form",
+                      {
+                        staticClass: "loginform",
+                        attrs: { model: _vm.loginForm }
+                      },
+                      [
+                        _c(
+                          "el-form-item",
+                          { attrs: { label: "Email Address" } },
+                          [
+                            _c("el-input", {
+                              attrs: { type: "text" },
+                              model: {
+                                value: _vm.loginForm.email,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.loginForm, "email", $$v)
+                                },
+                                expression: "loginForm.email"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.error.email
+                              ? _c("small", { staticClass: "display-error" }, [
+                                  _vm._v(_vm._s(_vm.error.email[0]))
+                                ])
+                              : _vm._e()
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
+                          { attrs: { label: "Password", prop: "pass" } },
+                          [
+                            _c("el-input", {
+                              attrs: {
+                                type: "password",
+                                "auto-complete": "off"
+                              },
+                              model: {
+                                value: _vm.loginForm.password,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.loginForm, "password", $$v)
+                                },
+                                expression: "loginForm.password"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
+                          [
+                            _c(
+                              "el-button",
+                              {
+                                attrs: { type: "primary" },
+                                on: { click: _vm.login }
+                              },
+                              [_vm._v("Login")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              { attrs: { to: { path: "/register" } } },
+                              [
+                                _c("el-button", { attrs: { type: "text" } }, [
+                                  _vm._v(
+                                    "\n                              Sign Up\n                          "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -85098,7 +85287,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("router-view")
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "flash flash-success" }, [
+        _vm._v("\n    " + _vm._s(_vm.flash.success) + "\n  ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flash flash-error" }, [
+        _vm._v("\n    " + _vm._s(_vm.flash.error) + "\n  ")
+      ]),
+      _vm._v(" "),
+      _c("router-view")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -100592,6 +100795,47 @@ function post(url, data) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/helpers/flash.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  state: {
+    success: null,
+    error: null
+  },
+
+  setSuccess: function setSuccess(message) {
+    var _this = this;
+
+    this.state.success = message;
+    this.$message({
+      message: this.initReg.username + messages,
+      type: 'success'
+    });
+    setTimeout(function () {
+      _this.removeSuccess();
+    }, 3000);
+  },
+  setError: function setError(message) {
+    var _this2 = this;
+
+    this.state.console.error = message;
+
+    setTimeout(function () {
+      _this2.removeError();
+    }, 3000);
+  },
+  removeSuccess: function removeSuccess() {
+    this.state.success = null;
+  },
+  removeError: function removeError() {
+    this.state.error = null;
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/assets/js/modules/membership/Login.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -100776,6 +101020,9 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     component: __WEBPACK_IMPORTED_MODULE_2__modules_membership_Register_vue___default.a
   }, {
     path: '/login',
+    component: __WEBPACK_IMPORTED_MODULE_3__modules_membership_Login_vue___default.a
+  }, {
+    path: '/home',
     component: __WEBPACK_IMPORTED_MODULE_3__modules_membership_Login_vue___default.a
   }]
 });

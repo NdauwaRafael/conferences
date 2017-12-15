@@ -113,9 +113,7 @@ body {
 }
 
 .transparent-register .form {
-  position: absolute;
-  top: 10%;
-  left: 20%;
+  background: rgba(220, 220, 220, 0.1);
   -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
           box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
   -webkit-transition: box-shadow .5s ease;
@@ -140,6 +138,8 @@ body {
 
 .transparent-register .form input {
   background: rgba(0, 255, 0, 0.1);
+  color: #90a4ae;
+  font-weight: bold;
 }
 
 .transparent-register .login-form-div {
@@ -156,6 +156,7 @@ body {
 }
 
 .transparent-register .login-form-div .loginform {
+  background: rgba(220, 220, 220, 0.07);
   padding: 50%;
   -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
           box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
@@ -170,6 +171,18 @@ body {
 
 .transparent-register .login-form-div .loginform label {
   color: #fff;
+}
+
+.transparent-register .login-form-div .loginform .display-error {
+  background: #ffab91;
+}
+
+@media only screen and (max-width: 40em) {
+  .transparent-register .login-form-div {
+    width: 100%;
+    margin-top: 1%;
+    margin-left: 2%;
+  }
 }
 
 /**
