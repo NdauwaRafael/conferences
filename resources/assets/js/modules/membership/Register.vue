@@ -6,14 +6,12 @@
           <div class="large-6 cell form">
             <h3>Sign Up to Instant Conference</h3>
               <el-form :model="initReg" ref="initReg" label-width="120px" class="demo-ruleForm">
-                  <el-form-item  prop="text" label="First Name" :rules="[
-                    { required: true, message: 'First Name Field Is rewuired', trigger: 'blur' } ]" >
+                  <el-form-item  prop="text" label="First Name"  >
+                    <small v-if="error.fname">{{error.fname}}</small>
                       <el-input v-model="initReg.fname"></el-input>
                   </el-form-item>
 
-                  <el-form-item  prop="text" label="Last Name" :rules="[
-                    { required: true, message: 'Last Name field is required', trigger: 'blur' }
-                  ]" >
+                  <el-form-item  prop="text" label="Last Name" >
                       <el-input v-model="initReg.lname"></el-input>
                   </el-form-item>
 
@@ -48,6 +46,7 @@
 
 </template>
 <script>
+import {post} from '../../helpers/api.js'
  export default {
      name: 'initial_signup',
      data(){
@@ -87,7 +86,22 @@
          regUser: function(initReg){
              this.$refs[initReg].validate((valid) => {
                  if (valid) {
-
+                   //initialize registration
+                   this.isProcessing = true
+                   this.error = {}
+                   post('/api/register', this.form)
+                   .then((res)=>{
+                     if (res.resgistered) {
+                        this.router.push('/login')
+                     }
+                     this.isProcessing = false;
+                   })
+                   .catch((err)=>{
+                     if(err.respose.status===422){
+                       this.error = err.response.data;
+                     }
+                     this.isProcessing = false;
+                   })
                  } else {
                      console.log('error submit!!');
                      return false;
