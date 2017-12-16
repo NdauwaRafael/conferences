@@ -4169,19 +4169,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5881,7 +5868,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39355,6 +39342,125 @@ var i18n = exports.i18n = function i18n(fn) {
 };
 
 exports.default = { use: use, t: t, i18n: i18n };
+
+/***/ }),
+
+/***/ "./node_modules/element-ui/lib/locale/lang/en.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = {
+  el: {
+    colorpicker: {
+      confirm: 'OK',
+      clear: 'Clear'
+    },
+    datepicker: {
+      now: 'Now',
+      today: 'Today',
+      cancel: 'Cancel',
+      clear: 'Clear',
+      confirm: 'OK',
+      selectDate: 'Select date',
+      selectTime: 'Select time',
+      startDate: 'Start Date',
+      startTime: 'Start Time',
+      endDate: 'End Date',
+      endTime: 'End Time',
+      prevYear: 'Previous Year',
+      nextYear: 'Next Year',
+      prevMonth: 'Previous Month',
+      nextMonth: 'Next Month',
+      year: '',
+      month1: 'January',
+      month2: 'February',
+      month3: 'March',
+      month4: 'April',
+      month5: 'May',
+      month6: 'June',
+      month7: 'July',
+      month8: 'August',
+      month9: 'September',
+      month10: 'October',
+      month11: 'November',
+      month12: 'December',
+      // week: 'week',
+      weeks: {
+        sun: 'Sun',
+        mon: 'Mon',
+        tue: 'Tue',
+        wed: 'Wed',
+        thu: 'Thu',
+        fri: 'Fri',
+        sat: 'Sat'
+      },
+      months: {
+        jan: 'Jan',
+        feb: 'Feb',
+        mar: 'Mar',
+        apr: 'Apr',
+        may: 'May',
+        jun: 'Jun',
+        jul: 'Jul',
+        aug: 'Aug',
+        sep: 'Sep',
+        oct: 'Oct',
+        nov: 'Nov',
+        dec: 'Dec'
+      }
+    },
+    select: {
+      loading: 'Loading',
+      noMatch: 'No matching data',
+      noData: 'No data',
+      placeholder: 'Select'
+    },
+    cascader: {
+      noMatch: 'No matching data',
+      loading: 'Loading',
+      placeholder: 'Select'
+    },
+    pagination: {
+      goto: 'Go to',
+      pagesize: '/page',
+      total: 'Total {total}',
+      pageClassifier: ''
+    },
+    messagebox: {
+      title: 'Message',
+      confirm: 'OK',
+      cancel: 'Cancel',
+      error: 'Illegal input'
+    },
+    upload: {
+      deleteTip: 'press delete to remove',
+      delete: 'Delete',
+      preview: 'Preview',
+      continue: 'Continue'
+    },
+    table: {
+      emptyText: 'No Data',
+      confirmFilter: 'Confirm',
+      resetFilter: 'Reset',
+      clearFilter: 'All',
+      sumText: 'Sum'
+    },
+    tree: {
+      emptyText: 'No Data'
+    },
+    transfer: {
+      noMatch: 'No matching data',
+      noData: 'No data',
+      titles: ['List 1', 'List 2'], // to be translated
+      filterPlaceholder: 'Enter keyword', // to be translated
+      noCheckedFormat: '{total} items', // to be translated
+      hasCheckedFormat: '{checked}/{total} checked' // to be translated
+    }
+  }
+};
 
 /***/ }),
 
@@ -86826,104 +86932,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modify-workshop" }, [
-    _c("h4", { staticClass: "heading " }, [_vm._v("Modify")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "grid-x grid-margin-x" }, [
-      _c(
-        "div",
-        { staticClass: "cell small-4" },
-        [
-          _c("h5", [_vm._v("Create Agenda For Event")]),
-          _vm._v(" "),
-          _c(
-            "el-form",
-            [
-              _c(
-                "el-form-item",
-                { attrs: { label: "Agenda Name" } },
-                [_c("el-input")],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                {
-                  staticStyle: { width: "100%" },
-                  attrs: { label: "Agenda Name" }
-                },
-                [
-                  _c("el-time-select", {
-                    attrs: {
-                      "picker-options": {
-                        start: "08:30",
-                        step: "00:15",
-                        end: "18:30"
-                      },
-                      placeholder: "Select time"
-                    },
-                    model: {
-                      value: _vm.value1,
-                      callback: function($$v) {
-                        _vm.value1 = $$v
-                      },
-                      expression: "value1"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Duration (minutes)" } },
-                [
-                  _c("el-input-number", {
-                    attrs: { "controls-position": "right", min: 10, max: 300 }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                [
-                  _c(
-                    "el-button",
-                    { attrs: { type: "primary" }, on: { click: _vm.create } },
-                    [_vm._v("Create Agenda")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1)
-    ])
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cell small-4" }, [
-      _c("h5", [_vm._v("All Agendas")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cell small-4" }, [
-      _c("h5", [_vm._v("Categorised Agendas")])
+    return _c("div", { staticClass: "modify-workshop" }, [
+      _c("h4", { staticClass: "heading " }, [_vm._v("Modify")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid-x grid-margin-x" }, [
+        _c("div", { staticClass: "cell small-4 add-agenda" }, [
+          _c("h5", [_vm._v("Create Agenda For Event")]),
+          _vm._v(" "),
+          _c("form", [
+            _c("label", [
+              _vm._v("Agenda Name\n                  "),
+              _c("input", {
+                attrs: { type: "text", placeholder: "Agenda Name" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", [
+              _vm._v("Agenda Duration\n                  "),
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  placeholder: "Agenda Duration (Minutes)"
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", [
+              _c(
+                "button",
+                { staticClass: "success button", attrs: { type: "button" } },
+                [_vm._v("Save")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "cell small-4" }, [
+          _c("h5", [_vm._v("All Agendas")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "cell small-4" }, [
+          _c("h5", [_vm._v("Categorised Agendas")])
+        ])
+      ])
     ])
   }
 ]
@@ -104353,8 +104411,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__("./resources/assets/js/store/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_element_ui__ = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_element_ui__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_theme_chalk_index_css__ = __webpack_require__("./node_modules/element-ui/lib/theme-chalk/index.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_theme_chalk_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_element_ui_lib_theme_chalk_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en__ = __webpack_require__("./node_modules/element-ui/lib/locale/lang/en.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_element_ui_lib_theme_chalk_index_css__ = __webpack_require__("./node_modules/element-ui/lib/theme-chalk/index.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_element_ui_lib_theme_chalk_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_element_ui_lib_theme_chalk_index_css__);
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
@@ -104367,8 +104427,9 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_resource__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_element_ui___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default.a });
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
     template: '<Workshop></Workshop>',

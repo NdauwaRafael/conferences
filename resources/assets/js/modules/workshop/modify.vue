@@ -3,33 +3,20 @@
     <h4 class="heading ">Modify</h4>
 
       <div class="grid-x grid-margin-x">
-        <div class="cell small-4">
+        <div class="cell small-4 add-agenda">
           <h5>Create Agenda For Event</h5>
-          <el-form>
-              <el-form-item  label="Agenda Name">
-                  <el-input ></el-input>
-              </el-form-item>
+            <form>
+                <label>Agenda Name
+                    <input type="text" placeholder="Agenda Name">
+                </label>
+                <label>Agenda Duration
+                    <input type="text" placeholder="Agenda Duration (Minutes)">
+                </label>
 
-              <el-form-item  label="Agenda Name" style="width: 100%;" >
-                <el-time-select
-                  v-model="value1"
-                  :picker-options="{
-                    start: '08:30',
-                    step: '00:15',
-                    end: '18:30'
-                  }"
-                  placeholder="Select time">
-                </el-time-select>
-              </el-form-item>
-
-              <el-form-item label="Duration (minutes)">
-                  <el-input-number controls-position="right"  :min="10" :max="300"></el-input-number>
-              </el-form-item>
-
-              <el-form-item >
-                  <el-button v-on:click="create" type="primary">Create Agenda</el-button>
-              </el-form-item>
-          </el-form>
+                <label>
+                    <button type="button" class="success button">Save</button>
+                </label>
+            </form>
         </div>
 
         <div class="cell small-4">
