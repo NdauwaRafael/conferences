@@ -3892,7 +3892,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //initialize registration
       this.isProcessing = true;
       this.error = {};
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/api/login', this.loginForm).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["c" /* post */])('/api/login', this.loginForm).then(function (res) {
         if (res.data.authenticated) {
           _this.$router.push('/home');
           __WEBPACK_IMPORTED_MODULE_2__helpers_flash__["a" /* default */].setSuccess('You have successfully Logged In into rapid conferences');
@@ -4000,7 +4000,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //initialize registration
             this.isProcessing = true;
             this.error = {};
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/api/register', this.initReg).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["c" /* post */])('/api/register', this.initReg).then(function (res) {
                 if (res.data.registered) {
                     _this.$router.push('/login');
                     __WEBPACK_IMPORTED_MODULE_1__helpers_flash__["a" /* default */].setSuccess('Welcome Onboard!! Your data has been Registered successfully. Just one more step, please Login!!.');
@@ -4197,6 +4197,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
 //
 //
 //
@@ -4259,7 +4262,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      auth: __WEBPACK_IMPORTED_MODULE_0__store_auth__["a" /* default */].state,
+      workshop: {
+        user: {},
+        agendas: []
+      }
+
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["b" /* get */])('/api/workshop/' + this.$route.params.id).then(function (res) {
+      _this.workshop = res.data.workshop;
+    });
+  },
+
+
+  methods: {
+    remove: function remove() {
+      var _this2 = this;
+
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* del */])('/api/workshop/' + this.$route.params.id).then(function (res) {
+        if (res.data.deleted) {
+          __WEBPACK_IMPORTED_MODULE_2__helpers_flash__["a" /* default */].setSuccess('Workshop data has been deleted successfully');
+          _this2.$route.push('/view');
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -4323,7 +4361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
-    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/api/workshop').then(function (res) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* get */])('/api/workshop').then(function (res) {
       _this.workshops = res.data.workshop;
     });
   }
@@ -4414,7 +4452,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     logout: function logout() {
       var _this = this;
 
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* post */])('/api/logout').then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["c" /* post */])('/api/logout').then(function (res) {
         if (res.data.logged_out) {
           __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].remove();
           __WEBPACK_IMPORTED_MODULE_0__helpers_flash__["a" /* default */].setSuccess('You have successfully Logged Out!');
@@ -86797,12 +86835,12 @@ var render = function() {
     _c("div", { staticClass: "grid-x" }, [
       _c(
         "div",
-        { staticClass: "medium-6 large-2 cell left-home-navigation" },
+        { staticClass: "medium-6 large-3 cell left-home-navigation" },
         [_c("leftnavigationhome")],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "medium-6 large-10 cell" }, [
+      _c("div", { staticClass: "medium-6 large-9 cell" }, [
         _c("div", { staticClass: "home-content" }, [
           _c("div", { staticClass: "content" }, [_c("router-view")], 1)
         ])
@@ -88076,9 +88114,11 @@ var render = function() {
           _c(
             "td",
             [
-              _c("el-button", { attrs: { type: "danger" } }, [
-                _vm._v("Delete Workshop")
-              ])
+              _c(
+                "el-button",
+                { attrs: { type: "danger" }, on: { click: _vm.remove } },
+                [_vm._v("Delete Workshop")]
+              )
             ],
             1
           )
@@ -88088,7 +88128,22 @@ var render = function() {
     _vm._v(" "),
     _c("h4", [_vm._v("Added Agendas")]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("table", [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.workshop.agendas, function(agenda) {
+          return _c("tr", [
+            _c("td", [_vm._v("#")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(agenda.agenda_time))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(agenda.agenda_name))])
+          ])
+        })
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -88096,25 +88151,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("#")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Time")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Agenda Name")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", [_vm._v("Content Goes Here")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Content Goes Here")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Content Goes Here")])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Agenda Name")])
       ])
     ])
   }
@@ -104813,8 +104856,9 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = get;
-/* harmony export (immutable) */ __webpack_exports__["b"] = post;
+/* harmony export (immutable) */ __webpack_exports__["b"] = get;
+/* harmony export (immutable) */ __webpack_exports__["c"] = post;
+/* harmony export (immutable) */ __webpack_exports__["a"] = del;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
@@ -104836,6 +104880,16 @@ function post(url, data) {
     method: 'POST',
     url: url,
     data: data,
+    headers: {
+      'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].state.api_token
+    }
+  });
+}
+
+function del(url) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+    method: 'DELETE',
+    url: url,
     headers: {
       'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].state.api_token
     }
