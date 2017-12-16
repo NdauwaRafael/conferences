@@ -4,40 +4,34 @@
     <div class="grid-x grid-margin-x">
       <div class="cell small-2"></div>
       <div class="cell small-8">
-        <el-form>
-            <el-form-item  label="Event Name">
-                <el-input v-model="workshop_Frm.eventName"></el-input>
-            </el-form-item>
-
-            <el-form-item label="Theme ">
-                <el-input v-model="workshop_Frm.eventTheme"></el-input>
-            </el-form-item>
-
-            <el-form-item label="Goal">
-                <el-input v-model="workshop_Frm.eventGoal"></el-input>
-            </el-form-item>
-
-            <el-form-item label="For Who">
-                <el-input v-model="workshop_Frm.eventAudience"></el-input>
-            </el-form-item>
-
-            <el-form-item label="Number of people">
-                <el-input v-model="workshop_Frm.eventNumber"></el-input>
-            </el-form-item>
-
-            <el-form-item label="Location">
-                <el-input v-model="workshop_Frm.eventLocation"></el-input>
-            </el-form-item>
-
-            <el-form-item label="When">
-                    <el-date-picker type="date" placeholder="Pick a date" v-model="workshop_Frm.eventDate" style="width: 100%;" > </el-date-picker>
-            </el-form-item>
-
-            <el-form-item>
-                <el-button v-on:click="create" type="primary">Create Workshop</el-button>
-            </el-form-item>
 
         </el-form>
+
+        <form>
+            <label>Event Name
+                <input type="text" v-model="workshop_Frm.eventName" placeholder="Event Name">
+            </label>
+            <label>Event Theme
+                <input type="text" v-model="workshop_Frm.eventTheme" placeholder="Event Theme">
+            </label>
+            <label>For Who?
+                <input type="text" v-model="workshop_Frm.eventAudience" placeholder="Tageted participants">
+            </label>
+            <label>Attendants Number
+                <input type="text" v-model="workshop_Frm.eventNumber" placeholder="Number of Attendants">
+            </label>
+            <label>Location
+                <input type="text" v-model="workshop_Frm.eventLocation" placeholder="Event Location">
+            </label>
+            <label>When
+                <input type="date" v-model="workshop_Frm.eventDate" placeholder="Agenda Duration (Minutes)">
+            </label>
+
+            <label>
+                <button v-on:click="create"  type="button" class="success button">Create Workshop</button>
+            </label>
+        </form>
+
       </div>
       <div class="cell small-2"></div>
     </div>

@@ -10,7 +10,6 @@ article {
 }
 
 .side-navigation {
-  padding: 20px;
   min-height: 100vh;
   background-color: #D3DCE6;
   bottom: 0px;
@@ -52,23 +51,16 @@ article {
 .home-navigation {
   position: absolute;
   margin-bottom: -10px;
-  padding: 15px;
-  color: #ccc;
+  padding: 10px;
   width: 100%;
+  background: #ffff;
 }
 
-.home-navigation .navigation-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row;
-          flex-flow: row;
-}
-
-.home-navigation .navigation-child .right {
-  text-align: right;
+.home-navigation ul li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 10%;
+  color: #ccc;
 }
 
 .is-toggled {
@@ -86,7 +78,7 @@ article {
 
 .left-home-navigation {
   min-height: 100vh;
-  background-color: rgba(192, 192, 192, 0.8);
+  background: #69f0ae;
 }
 
 .left-home-navigation h4 {
@@ -96,17 +88,13 @@ article {
 }
 
 .left-home-navigation .user {
-  text-align: center;
-}
-
-.left-home-navigation .user .user-img {
-  width: 40%;
-  margin-left: 30%;
+  padding-top: 50px;
 }
 
 .left-home-navigation .navigation-home {
   margin-left: -9%;
   text-align: left;
+  min-height: 100vh;
 }
 
 .left-home-navigation .navigation-home ul li {
@@ -115,13 +103,14 @@ article {
   background: rgba(0, 0, 0, 0.5);
   color: #c5e1a5;
   border-top: 1px solid #cccccccc;
-  -webkit-box-shadow: 10px 10px 5px grey;
-          box-shadow: 10px 10px 5px grey;
+  -webkit-box-shadow: 5px 5px 5px grey;
+          box-shadow: 5px 5px 5px grey;
   margin-top: 5px;
 }
 
-.home-content {
-  background-color: rgba(255, 0, 255, 0.1);
+.home-background {
+  padding: -1px;
+  background: #f5f5f5;
   min-height: 100vh;
 }
 
@@ -136,20 +125,12 @@ article {
 }
 
 .home-content .create-form {
-  background: rgba(0, 0, 0, 0.6);
-  color: #eeeeee;
   padding: 2%;
   border-radius: 5px;
 }
 
-.home-content .create-form label {
-  color: #eeeeee;
-}
-
 .home-content .modify-workshop {
   padding: 15px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #eeeeee;
   min-height: 100vh;
 }
 
@@ -160,11 +141,34 @@ article {
 }
 
 .home-content .modify-workshop .add-agenda {
-  min-height: 40vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  height: 40vh;
+  background-color: rgba(0, 0, 0, 0.6);
   -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
           box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
   padding: 10px;
+}
+
+.home-content .modify-workshop .all-agendas {
+  min-height: 90vh;
+  background-color: rgba(192, 192, 192, 0.6);
+  -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 1px 1px rgba(255, 255, 255, 0.5);
+          box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 1px 1px rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+
+.home-content .modify-workshop .cat-agendas {
+  min-height: 90vh;
+  background-color: rgba(102, 51, 0, 0.6);
+  -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 1px 1px rgba(255, 255, 255, 0.5);
+          box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 1px 1px rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+
+@media only screen and (max-width: 40em) {
+  .left-home-navigation {
+    height: auto;
+    min-width: inherit;
+  }
 }
 
 html,

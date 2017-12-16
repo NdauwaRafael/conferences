@@ -1,5 +1,5 @@
 <template >
-  <div>
+  <div class="home-background">
     <div class="grid-x">
       <div class="medium-6 large-2 cell left-home-navigation">
           <leftnavigationhome ></leftnavigationhome >

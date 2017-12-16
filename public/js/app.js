@@ -3819,11 +3819,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -4086,12 +4081,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -4173,7 +4162,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { ElInputNumber: __WEBPACK_IMPORTED_MODULE_0__node_modules_element_ui_packages_input_number_src_input_number_vue___default.a }
+  components: { ElInputNumber: __WEBPACK_IMPORTED_MODULE_0__node_modules_element_ui_packages_input_number_src_input_number_vue___default.a },
+
+  data: function data() {
+    return {
+      agendaForm: {
+        name: '',
+        duration: ''
+      }
+    };
+  },
+
+  methods: {
+    addAgenda: function addAgenda() {
+      if (JSON.parse(localStorage.getItem('agendas')) === null) {
+        var b = [];
+        localStorage.setItem('agendas', JSON.stringify(b));
+        var c = JSON.parse(localStorage.getItem('agendas'));
+        c.push(this.agendaForm);
+        localStorage.setItem('agendas', JSON.stringify(c));
+      } else {
+        var a = JSON.parse(localStorage.getItem('agendas'));
+        a.push(this.agendaForm);
+        localStorage.setItem('agendas', JSON.stringify(a));
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -5868,7 +5882,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -5883,7 +5897,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -86689,7 +86703,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "home-background" }, [
     _c("div", { staticClass: "grid-x" }, [
       _c(
         "div",
@@ -86932,56 +86946,100 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "modify-workshop" }, [
+    _c("h4", { staticClass: "heading " }, [_vm._v("Modify")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "grid-x grid-margin-x" }, [
+      _c("div", { staticClass: "cell small-4 add-agenda" }, [
+        _c("h5", [_vm._v("Create Agenda For Event")]),
+        _vm._v(" "),
+        _c("form", [
+          _c("label", [
+            _vm._v("Agenda Name\n                  "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.agendaForm.name,
+                  expression: "agendaForm.name"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Agenda Name" },
+              domProps: { value: _vm.agendaForm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.agendaForm, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("Agenda Duration\n                  "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.agendaForm.duration,
+                  expression: "agendaForm.duration"
+                }
+              ],
+              attrs: {
+                type: "number",
+                placeholder: "Agenda Duration (Minutes)"
+              },
+              domProps: { value: _vm.agendaForm.duration },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.agendaForm, "duration", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _c(
+              "button",
+              {
+                staticClass: "success button",
+                attrs: { type: "button" },
+                on: { click: _vm.addAgenda }
+              },
+              [_vm._v("Save")]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modify-workshop" }, [
-      _c("h4", { staticClass: "heading " }, [_vm._v("Modify")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid-x grid-margin-x" }, [
-        _c("div", { staticClass: "cell small-4 add-agenda" }, [
-          _c("h5", [_vm._v("Create Agenda For Event")]),
-          _vm._v(" "),
-          _c("form", [
-            _c("label", [
-              _vm._v("Agenda Name\n                  "),
-              _c("input", {
-                attrs: { type: "text", placeholder: "Agenda Name" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", [
-              _vm._v("Agenda Duration\n                  "),
-              _c("input", {
-                attrs: {
-                  type: "text",
-                  placeholder: "Agenda Duration (Minutes)"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", [
-              _c(
-                "button",
-                { staticClass: "success button", attrs: { type: "button" } },
-                [_vm._v("Save")]
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "cell small-4" }, [
-          _c("h5", [_vm._v("All Agendas")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "cell small-4" }, [
-          _c("h5", [_vm._v("Categorised Agendas")])
-        ])
-      ])
+    return _c("div", { staticClass: "cell small-4 all-agendas" }, [
+      _c("h5", [_vm._v("All Agendas")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "cell small-4 cat-agendas" }, [
+      _c("h5", [_vm._v("Categorised Agendas")])
     ])
   }
 ]
@@ -87009,151 +87067,173 @@ var render = function() {
     _c("div", { staticClass: "grid-x grid-margin-x" }, [
       _c("div", { staticClass: "cell small-2" }),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "cell small-8" },
-        [
-          _c(
-            "el-form",
-            [
-              _c(
-                "el-form-item",
-                { attrs: { label: "Event Name" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.workshop_Frm.eventName,
-                      callback: function($$v) {
-                        _vm.$set(_vm.workshop_Frm, "eventName", $$v)
-                      },
-                      expression: "workshop_Frm.eventName"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Theme " } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.workshop_Frm.eventTheme,
-                      callback: function($$v) {
-                        _vm.$set(_vm.workshop_Frm, "eventTheme", $$v)
-                      },
-                      expression: "workshop_Frm.eventTheme"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Goal" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.workshop_Frm.eventGoal,
-                      callback: function($$v) {
-                        _vm.$set(_vm.workshop_Frm, "eventGoal", $$v)
-                      },
-                      expression: "workshop_Frm.eventGoal"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "For Who" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.workshop_Frm.eventAudience,
-                      callback: function($$v) {
-                        _vm.$set(_vm.workshop_Frm, "eventAudience", $$v)
-                      },
-                      expression: "workshop_Frm.eventAudience"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Number of people" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.workshop_Frm.eventNumber,
-                      callback: function($$v) {
-                        _vm.$set(_vm.workshop_Frm, "eventNumber", $$v)
-                      },
-                      expression: "workshop_Frm.eventNumber"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Location" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.workshop_Frm.eventLocation,
-                      callback: function($$v) {
-                        _vm.$set(_vm.workshop_Frm, "eventLocation", $$v)
-                      },
-                      expression: "workshop_Frm.eventLocation"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "When" } },
-                [
-                  _c("el-date-picker", {
-                    staticStyle: { width: "100%" },
-                    attrs: { type: "date", placeholder: "Pick a date" },
-                    model: {
-                      value: _vm.workshop_Frm.eventDate,
-                      callback: function($$v) {
-                        _vm.$set(_vm.workshop_Frm, "eventDate", $$v)
-                      },
-                      expression: "workshop_Frm.eventDate"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                [
-                  _c(
-                    "el-button",
-                    { attrs: { type: "primary" }, on: { click: _vm.create } },
-                    [_vm._v("Create Workshop")]
+      _c("div", { staticClass: "cell small-8" }, [
+        _c("form", [
+          _c("label", [
+            _vm._v("Event Name\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.workshop_Frm.eventName,
+                  expression: "workshop_Frm.eventName"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Event Name" },
+              domProps: { value: _vm.workshop_Frm.eventName },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.workshop_Frm, "eventName", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("Event Theme\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.workshop_Frm.eventTheme,
+                  expression: "workshop_Frm.eventTheme"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Event Theme" },
+              domProps: { value: _vm.workshop_Frm.eventTheme },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.workshop_Frm, "eventTheme", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("For Who?\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.workshop_Frm.eventAudience,
+                  expression: "workshop_Frm.eventAudience"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Tageted participants" },
+              domProps: { value: _vm.workshop_Frm.eventAudience },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.workshop_Frm,
+                    "eventAudience",
+                    $event.target.value
                   )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("Attendants Number\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.workshop_Frm.eventNumber,
+                  expression: "workshop_Frm.eventNumber"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Number of Attendants" },
+              domProps: { value: _vm.workshop_Frm.eventNumber },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.workshop_Frm, "eventNumber", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("Location\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.workshop_Frm.eventLocation,
+                  expression: "workshop_Frm.eventLocation"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Event Location" },
+              domProps: { value: _vm.workshop_Frm.eventLocation },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.workshop_Frm,
+                    "eventLocation",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("When\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.workshop_Frm.eventDate,
+                  expression: "workshop_Frm.eventDate"
+                }
+              ],
+              attrs: { type: "date", placeholder: "Agenda Duration (Minutes)" },
+              domProps: { value: _vm.workshop_Frm.eventDate },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.workshop_Frm, "eventDate", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _c(
+              "button",
+              {
+                staticClass: "success button",
+                attrs: { type: "button" },
+                on: { click: _vm.create }
+              },
+              [_vm._v("Create Workshop")]
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "cell small-2" })
     ])
@@ -87331,8 +87411,8 @@ var render = function() {
         [
           _c("div", { staticClass: "grid-container navigation-child" }, [
             _c("div", { staticClass: "right row" }, [
-              _c("div", { staticClass: "large-6 large-offset-6 columns" }, [
-                _c("ul", { staticClass: "menu" }, [
+              _c("div", { staticClass: "large-10 large-offset-2 columns" }, [
+                _c("ul", [
                   _c(
                     "li",
                     [
@@ -87685,14 +87765,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h4", [_vm._v("Instance Conferences")]),
-    _vm._v(" "),
     _c("div", { staticClass: "user" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("h4"),
-      _vm._v(" "),
-      _vm._m(1),
+      _c("h4", { staticClass: "heading" }, [_vm._v("Instance Conferences")]),
       _vm._v(" "),
       _c("div", { staticClass: "navigation-home" }, [
         _c(
@@ -87722,9 +87796,9 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(2),
+            _vm._m(0),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(1)
           ],
           1
         )
@@ -87733,27 +87807,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "user-img" }, [
-      _c("p", [_c("img", { attrs: { src: "icons/user.png" } })])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("i", {
-        staticClass: "fa fa-circle",
-        staticStyle: { color: "green", "font-size": "16px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("  Role")
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

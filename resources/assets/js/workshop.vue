@@ -11,8 +11,8 @@
     <div class="home-navigation " :class="{'is-toggled': toggled, 'not-toggled': !toggled  }">
       <div class="grid-container navigation-child">
         <div class="right row">
-          <div class="large-6 large-offset-6 columns">
-            <ul class="menu">
+          <div class="large-10 large-offset-2 columns">
+            <ul >
               <li >
                 <router-link :to="{path: '/'}">
                 <a>Instant Conferences</a>
@@ -94,4 +94,3 @@ created(){
     }
 }
 </script>
-

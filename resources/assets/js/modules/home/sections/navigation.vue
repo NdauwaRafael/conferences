@@ -1,13 +1,8 @@
 <template >
   <div>
-    <h4>Instance Conferences</h4>
-    <div class="user">
-        <div class="user-img">
-            <p><img src="icons/user.png"></p>
-        </div>
-        <h4></h4>
-        <p><i class="fa fa-circle" aria-hidden="true" style="color:green; font-size: 16px"></i>  Role</p>
 
+    <div class="user">
+    <h4 class="heading">Instance Conferences</h4>
         <div class="navigation-home">
           <ul>
 
