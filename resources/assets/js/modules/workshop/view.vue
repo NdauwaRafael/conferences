@@ -12,16 +12,16 @@
       <th >Action</th>
     </tr>
   </thead>
-  <tbody v-for="workshops in workshop">
+  <tbody v-for="workshop in workshops">
     <tr>
-      <td>1</td>
-      <td>{{workshops.eventDate}}</td>
-      <td>{{workshops.eventName}}</td>
-      <td>{{workshops.eventTheme}}</td>
-      <td>{{workshops.eventAudience}}</td>
+      <td>{{workshop.id}}</td>
+      <td>{{workshop.when}}</td>
+      <td>{{workshop.event_name}}</td>
+      <td>{{workshop.theme}}</td>
+      <td>{{workshop.audience}}</td>
       <td>
-        <router-link :to="{path: '/modify'}">
-        <el-button type="info" round>Modify</el-button>
+        <router-link :to="`/view/${workshop.id}`">
+        <el-button type="success" size="small">Reveal Details</el-button>
         </router-link>
       </td>
     </tr>
@@ -32,11 +32,27 @@
 </template>
 
 <script>
+import {get} from '../../helpers/api'
 export default {
-  computed:{
-  workshop(){
-    return this.$store.getters.workshop;
-  }
+  data() {
+      return {
+        workshops: [],
+      }
+  },
+//   // computed:{
+//   // workshop(){
+//   //   return this.$store.getters.workshop;
+//   // },
+//
+//
+//
+// }
+
+created() {
+  get('/api/workshop')
+  .then((res)=>{
+    this.workshops = res.data.workshop
+  })
 
 }
 }

@@ -15,7 +15,7 @@ class WorkshopController extends Controller
 
     public function index(){
       $workshop = Workshop::orderBy('created_at', 'desc')
-        ->get(['event_name', 'theme', 'goal', 'audience', 'number', 'location', 'user_id', 'when', 'time']);
+        ->get(['id','event_name', 'theme', 'goal', 'audience', 'number', 'location', 'user_id', 'when', 'time']);
 
         return response()
         ->json([
@@ -50,10 +50,10 @@ class WorkshopController extends Controller
       $agendas = [];
 
       foreach ($request->agendas as $agenda) {
-          $agendas[] = new WorkshopAgenda($request)
+          $agendas[] = new WorkshopAgenda($request);
       }
 
-      $workshop -> new Workshop($request->all());
+      $workshop = new Workshop($request->all());
       $request->user()
       ->workshop()->save($workshop);
 
@@ -65,26 +65,26 @@ class WorkshopController extends Controller
          'saved'=>true,
          'id'=>$workshop->id,
          'message'=> 'You have successfully created a Workshop!!'
-       ])
+       ]);
     }
 
 
     public function show($id)
     {
-      $workshop::Workshop::with(['user', 'agendas'])
+      $workshop=Workshop::with(['user', 'agendas'])
       ->findOrFail($id);
 
       return response()
       ->json([
         'workshop'=>$workshop
-      ])
+      ]);
     }
 
-    public function edit($id, Request, $request)
+    public function edit($id, Request $request)
     {
       $form = $request->user()->workshop()
       ->with(['agendas'=>function($query){
-        $query ->get(['id', 'agenda_name', 'agenda_time', 'agenda_duration'])
+        $query ->get(['id', 'agenda_name', 'agenda_time', 'agenda_duration']);
       }]);
 
       return response()
@@ -94,7 +94,7 @@ class WorkshopController extends Controller
     }
 
 
-    public function update($id, Request, $request)
+    public function update($id, Request $request)
     {
       $this->validate($request, [
         'event_name'=> 'required | max:120',
@@ -107,8 +107,8 @@ class WorkshopController extends Controller
         'when' => 'required',
         'time' => 'required',
         'agendas.*.id'=>'integer|exists:workshop_agendas',
-        'agendas.*.agenda_name' => 'required'
-        'agendas.*.agenda_time' => 'required'
+        'agendas.*.agenda_name' => 'required',
+        'agendas.*.agenda_time' => 'required',
         'agendas.*.agenda_duration' => 'required'
       ]);
 
@@ -152,12 +152,12 @@ class WorkshopController extends Controller
              'saved'=>true,
              'id'=>$workshop->id,
              'message'=>'You have successfully the workshop!!'
-           ])
+           ]);
 
     }
 
 
-    public function destroy($id, Request, $request)
+    public function destroy($id, Request $request)
     {
       $workshop = $request->user()->workshop()
         ->findsOrFails($id);

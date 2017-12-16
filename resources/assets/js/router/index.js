@@ -8,6 +8,7 @@ import home from '../modules/home/home.vue';
 import create from '../modules/workshop/create.vue';
 import view from '../modules/workshop/view.vue';
 import modify from '../modules/workshop/modify.vue';
+import WorkshopReveal from '../modules/workshop/reveal.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -44,6 +45,10 @@ const router = new VueRouter({
         {
         path:'/modify',
         component: modify
+        },
+        {
+        path:'/view/:id',
+        component: WorkshopReveal
         }
       ]
     }

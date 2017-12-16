@@ -22,6 +22,8 @@ const mutations = {
 
     GET_WORKSHOP(state) {
     state.workshop = JSON.parse(localStorage.getItem('workshoplist'));
+
+    
 }
 };
 

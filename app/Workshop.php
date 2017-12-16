@@ -26,6 +26,7 @@ class Workshop extends Model
       public function form()
       {
         return [
+          'id'=>'',
           'event_name'=>'',
           'theme'=>'',
           'goal'=>'',
