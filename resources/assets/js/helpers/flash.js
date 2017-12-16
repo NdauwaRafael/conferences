@@ -6,10 +6,6 @@ export default {
 
   setSuccess(message){
     this.state.success = message
-    this.$message({
-      message: this.initReg.username + messages,
-       type: 'success'
-    });
     setTimeout(()=>{
       this.removeSuccess()
     }, 3000)

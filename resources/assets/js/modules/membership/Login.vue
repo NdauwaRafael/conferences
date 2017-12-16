@@ -38,19 +38,20 @@
 <script>
 import {post} from '../../helpers/api'
 import Auth from '../../store/auth'
+import Flash from '../../helpers/flash'
 export default {
   name: 'Login' ,
   data(){
          return {
              loginForm: {
-                 password:'',
-                 email:'',
+                 password: '',
+                 email: '',
              },
              error: {}
          }
      },
 methods: {
-    login: function () {
+    login() {
       //initialize registration
       this.isProcessing = true
       this.error = {}

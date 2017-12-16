@@ -53,7 +53,7 @@
 import {post} from '../../helpers/api'
 import Flash from '../../helpers/flash'
  export default {
-     name: 'initial_signup',
+     name: 'register',
      data(){
 
          return {
