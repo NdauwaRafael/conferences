@@ -9,6 +9,7 @@ import create from '../modules/workshop/create.vue';
 import view from '../modules/workshop/view.vue';
 import modify from '../modules/workshop/modify.vue';
 import WorkshopReveal from '../modules/workshop/reveal.vue';
+import AddSession from '../modules/workshop/AddSession.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -49,6 +50,11 @@ const router = new VueRouter({
         {
         path:'/view/:id',
         component: WorkshopReveal
+        },
+        {
+        path:'/view/:id/AddSession',
+        component: AddSession,
+        mete: {mode: 'edit'}
         }
       ]
     }

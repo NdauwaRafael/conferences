@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory;
 use App\Workshop;
 use App\Agendas;
+use App\Lsessions;
 class WorkshopTableSeeder extends Seeder
 {
     /**
@@ -16,6 +17,7 @@ class WorkshopTableSeeder extends Seeder
         $faker = Factory::create();
         Workshop::truncate();
         Agendas::truncate();
+        Lsessions::truncate();
 
         foreach (range(1, 10) as $i) {
         $workshop =   Workshop::create([
@@ -38,6 +40,14 @@ class WorkshopTableSeeder extends Seeder
             'agenda_name' => $faker->catchPhrase,
             'agenda_time' => date('H:i:s'),
             'agenda_duration' => mt_rand(15, 60)
+          ]);
+        }
+
+        foreach (range(1, mt_rand(3, 12)) as $k) {
+          Lsessions::create([
+            'workshop_id' => $workshop -> id,
+            'session_name' => $faker->catchPhrase,
+            'session_time' => date('H:i:s')
           ]);
         }
     }

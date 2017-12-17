@@ -3819,6 +3819,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -4030,6 +4031,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'welcome'
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/modules/workshop/AddSession.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      sessionForm: {
+        session_name: '',
+        session_time: '',
+        workshop_id: ''
+        // error: {},
+        // initializeURL: '/api/view/create',
+        // action: 'Create'
+
+      } };
+  },
+  created: function created() {
+    this.sessionForm.workshop_id = this.$route.params.id;
+  },
+
+
+  methods: {
+    addSession: function addSession() {
+      var _this = this;
+
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["c" /* post */])('/api/addSession', this.sessionForm).then(function (res) {
+        if (res.data.added) {
+          _this.$message({
+            message: 'Logical session has been successfully added',
+            type: 'success'
+          });
+          _this.$router.push('/view/' + _this.$route.params.id);
+        }
+      }).catch(function (err) {
+        _this.$message.error(err.message);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -4261,6 +4344,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4271,9 +4384,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       auth: __WEBPACK_IMPORTED_MODULE_0__store_auth__["a" /* default */].state,
       workshop: {
         user: {},
-        agendas: []
-      }
-
+        agendas: [],
+        lsessions: []
+      },
+      isDeleting: false
     };
   },
   created: function created() {
@@ -4289,10 +4403,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     remove: function remove() {
       var _this2 = this;
 
+      this.isDeleting = false;
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* del */])('/api/workshop/' + this.$route.params.id).then(function (res) {
         if (res.data.deleted) {
           __WEBPACK_IMPORTED_MODULE_2__helpers_flash__["a" /* default */].setSuccess('Workshop data has been deleted successfully');
-          _this2.$route.push('/view');
+          _this2.$router.push('/view');
         }
       });
     }
@@ -87639,6 +87754,129 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-38d2b013\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/modules/workshop/AddSession.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", { staticClass: "heading" }, [
+      _vm._v("Add Logical sessions | different themes for the workshop")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "grid-x" }, [
+      _c("div", { staticClass: "large-2 cell" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "large-8 cell" }, [
+        _c("form", [
+          _c("label", [
+            _vm._v("Session Name\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.sessionForm.session_name,
+                  expression: "sessionForm.session_name"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Session Name" },
+              domProps: { value: _vm.sessionForm.session_name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.sessionForm, "session_name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("Session Time\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.sessionForm.session_time,
+                  expression: "sessionForm.session_time"
+                }
+              ],
+              attrs: { type: "time", placeholder: "Session Time" },
+              domProps: { value: _vm.sessionForm.session_time },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.sessionForm, "session_time", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _vm._v("Session Description\n              "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.sessionForm.description,
+                  expression: "sessionForm.description"
+                }
+              ],
+              attrs: {
+                placeholder: "Sesstion Duration (Minutes)",
+                rows: "8",
+                cols: "80"
+              },
+              domProps: { value: _vm.sessionForm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.sessionForm, "description", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "label",
+            [
+              _c(
+                "el-button",
+                { attrs: { type: "success" }, on: { click: _vm.addSession } },
+                [_vm._v("Add Session")]
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "large-2 cell" })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-38d2b013", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3ad0d198\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/modules/welcome.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -87894,7 +88132,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "user" }, [
-      _c("h4", { staticClass: "heading" }, [_vm._v("Instance Conferences")]),
+      _c("img", { attrs: { src: "/img/cytonn.png", alt: "" } }),
+      _vm._v(" "),
+      _c("h4", { staticClass: "heading" }, [_vm._v("Instant Conferences")]),
       _vm._v(" "),
       _c("div", { staticClass: "navigation-home" }, [
         _c(
@@ -88067,47 +88307,74 @@ var render = function() {
         _c("tr", [
           _c("td", [_vm._v("Workshop Name")]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.workshop.event_name))])
+          _c("td", { attrs: { colspan: "3" } }, [
+            _vm._v(_vm._s(_vm.workshop.event_name))
+          ])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("td", [_vm._v("Workshop Theme")]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.workshop.theme))])
+          _c("td", { attrs: { colspan: "3" } }, [
+            _vm._v(_vm._s(_vm.workshop.theme))
+          ])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("td", [_vm._v("For Who:")]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.workshop.audience))])
+          _c("td", { attrs: { colspan: "3" } }, [
+            _vm._v(_vm._s(_vm.workshop.audience))
+          ])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("td", [_vm._v("Location:")]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.workshop.location))])
+          _c("td", { attrs: { colspan: "3" } }, [
+            _vm._v(_vm._s(_vm.workshop.location))
+          ])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("td", [_vm._v("Number of people:")]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.workshop.number))])
+          _c("td", { attrs: { colspan: "3" } }, [
+            _vm._v(_vm._s(_vm.workshop.number))
+          ])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("td", [_vm._v("When:")]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.workshop.when))])
+          _c("td", { attrs: { colspan: "3" } }, [
+            _vm._v(_vm._s(_vm.workshop.when))
+          ])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("td", [_vm._v("Created by:")]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.workshop.user.name))])
+          _c("td", { attrs: { colspan: "3" } }, [
+            _vm._v(_vm._s(_vm.workshop.user.name))
+          ])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("td", [_vm._v("Enhance:")]),
+          _vm._v(" "),
+          _c(
+            "td",
+            [
+              _c(
+                "router-link",
+                { attrs: { to: "/view/" + _vm.workshop.id + "/addSession" } },
+                [_c("el-button", [_vm._v("Add Logic Sessions")])],
+                1
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("td", [_c("el-button", [_vm._v("Add Agendas")])], 1),
           _vm._v(" "),
@@ -88126,23 +88393,48 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("h4", [_vm._v("Added Agendas")]),
-    _vm._v(" "),
-    _c("table", [
-      _vm._m(0),
+    _c("div", { staticClass: "sessions" }, [
+      _c("h4", [_vm._v("Logical Sessions | Themes")]),
       _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.workshop.agendas, function(agenda) {
-          return _c("tr", [
-            _c("td", [_vm._v("#")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(agenda.agenda_time))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(agenda.agenda_name))])
-          ])
-        })
-      )
+      _c("table", [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.workshop.lsessions, function(lsession) {
+            return _c("tr", [
+              _c("td", [_vm._v("#")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(lsession.session_time))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(lsession.session_name))])
+            ])
+          })
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "agenda" }, [
+      _c("h4", [_vm._v("Added Agendas")]),
+      _vm._v(" "),
+      _c("table", [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.workshop.agendas, function(agenda) {
+            return _c("tr", [
+              _c("td", [_vm._v("#")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(agenda.agenda_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("10 minutes")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Nill")])
+            ])
+          })
+        )
+      ])
     ])
   ])
 }
@@ -88157,7 +88449,23 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Time")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Agenda Name")])
+        _c("th", [_vm._v("Session Name")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Assigned time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Agenda Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Logic Session")])
       ])
     ])
   }
@@ -104902,16 +105210,19 @@ function del(url) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui__ = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_element_ui__);
+
 /* harmony default export */ __webpack_exports__["a"] = ({
   state: {
     success: null,
     error: null
   },
 
-  setSuccess: function setSuccess(message) {
+  setSuccess: function setSuccess(msg) {
     var _this = this;
 
-    this.state.success = message;
+    this.state.success = msg;
     setTimeout(function () {
       _this.removeSuccess();
     }, 3000);
@@ -105184,6 +105495,55 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/modules/workshop/AddSession.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/modules/workshop/AddSession.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-38d2b013\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/modules/workshop/AddSession.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/modules/workshop/AddSession.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-38d2b013", Component.options)
+  } else {
+    hotAPI.reload("data-v-38d2b013", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/modules/workshop/create.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -105417,6 +105777,9 @@ module.exports = Component.exports
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_workshop_modify_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__modules_workshop_modify_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_workshop_reveal_vue__ = __webpack_require__("./resources/assets/js/modules/workshop/reveal.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_workshop_reveal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__modules_workshop_reveal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_workshop_AddSession_vue__ = __webpack_require__("./resources/assets/js/modules/workshop/AddSession.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_workshop_AddSession_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__modules_workshop_AddSession_vue__);
+
 
 
 
@@ -105459,6 +105822,10 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     }, {
       path: '/view/:id',
       component: __WEBPACK_IMPORTED_MODULE_10__modules_workshop_reveal_vue___default.a
+    }, {
+      path: '/view/:id/AddSession',
+      component: __WEBPACK_IMPORTED_MODULE_11__modules_workshop_AddSession_vue___default.a,
+      mete: { mode: 'edit' }
     }]
   }]
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Workshop;
 use App\Agendas;
+use App\Lsessions;
 class WorkshopController extends Controller
 {
     public function __construct()
@@ -44,7 +45,10 @@ class WorkshopController extends Controller
 
         'agendas.*.agenda_name' => 'required',
         'agendas.*.agenda_time' => 'required',
-        'agendas.*.agenda_duration' => 'required'
+        'agendas.*.agenda_duration' => 'required',
+
+        'lsessions.*.sessions_name' => 'required',
+        'lsessionss.*.session_time' => 'required'
       ]);
 
       $agendas = [];
@@ -53,12 +57,21 @@ class WorkshopController extends Controller
           $agendas[] = new WorkshopAgenda($request);
       }
 
+      $lsessions = [];
+
+      foreach ($request->lsessions as $lsession) {
+          $lsessions[] = new WorkshopLsession($request);
+      }
+
       $workshop = new Workshop($request->all());
       $request->user()
       ->workshop()->save($workshop);
 
       $workshop->agendas()
       ->saveMany($agendas);
+
+      $workshop->lsessions()
+      ->saveMany($lsessions);
 
       return response()
        ->json([
@@ -71,7 +84,7 @@ class WorkshopController extends Controller
 
     public function show($id)
     {
-      $workshop=Workshop::with(['user', 'agendas'])
+      $workshop=Workshop::with(['user', 'agendas','lsessions'])
       ->findOrFail($id);
 
       return response()
@@ -109,10 +122,13 @@ class WorkshopController extends Controller
         'agendas.*.id'=>'integer|exists:workshop_agendas',
         'agendas.*.agenda_name' => 'required',
         'agendas.*.agenda_time' => 'required',
-        'agendas.*.agenda_duration' => 'required'
+        'agendas.*.agenda_duration' => 'required',
+        'lsessions.*.id'=>'integer|exists:workshop_lsessions',
+        'lsessions.*.lsession_name' => 'required',
+        'lsessions.*.lsession_time' => 'required'
       ]);
 
-      $workshop = $request->user()->woekshop()
+      $workshop = $request->user()->workshop()
         ->findOrFail($id);
 
         $agendas = [];
@@ -127,6 +143,21 @@ class WorkshopController extends Controller
             $agendasUpdated[] = $agenda['id'];
           }else{
             $agendas[]= new WorkshopAgenda($agenda);
+          }
+        }
+
+        $lsessions = [];
+        $lsessionsUpdated = [];
+
+        foreach ($request->lsessions as $lsession) {
+          if (isset($lsession['id'])) {
+            WorkshopLsession::where('workshop_id', $workshop->id)
+            ->where('id', $lsession['id'])
+            ->update($lsession);
+
+            $lsessionsUpdated[] = $lsession['id'];
+          }else{
+            $lsessions[]= new WorkshopLsession($lsession);
           }
         }
 
@@ -147,6 +178,14 @@ class WorkshopController extends Controller
             $workshop->agendas()->saveMany($agendas);
           }
 
+          WorkshopLsession::whereNotIn('id', $lsessionsUpdated)
+            -where('workshop_id', $workshop->id)
+            ->delete();
+
+            if (count($lsessions)) {
+              $workshop->lsessions()->saveMany($lsessions);
+            }
+
           return response()
            ->json([
              'saved'=>true,
@@ -162,12 +201,15 @@ class WorkshopController extends Controller
       $workshop = $request->user()->workshop()
         ->findsOrFails($id);
 
-        WorkshopAgenda::where('workshop_id', $workshops->id)->delete();
+        WorkshopAgenda::where('workshop_id', $workshop->id)->delete();
+        $result->delete();
+
+        WorkshopLsession::where('workshop_id', $workshop->id)->delete();
         $result->delete();
 
         return response()
         ->json([
-          'delete'=>true
+          'deleted'=>true
         ]);
     }
 }

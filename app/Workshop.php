@@ -22,6 +22,10 @@ class Workshop extends Model
         return $this->hasMany(Agendas::class);
       }
 
+      public function lsessions($value='')
+      {
+        return $this->hasMany(Lsessions::class);
+      }
 
       public function form()
       {
@@ -38,6 +42,9 @@ class Workshop extends Model
           'time'=>'',
           'agendas'=>[
             Agendas::form()
+          ],
+          'lsessions'=>[
+            Lsessions::form()
           ]
 
         ];

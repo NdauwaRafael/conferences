@@ -4,57 +4,87 @@
       <tbody>
         <tr>
           <td>Workshop Name</td>
-          <td>{{workshop.event_name}}</td>
+          <td colspan="3">{{workshop.event_name}}</td>
         </tr>
         <tr>
           <td>Workshop Theme</td>
-          <td>{{workshop.theme}}</td>
+          <td colspan="3">{{workshop.theme}}</td>
         </tr>
         <tr>
           <td>For Who:</td>
-          <td>{{workshop.audience}}</td>
+          <td colspan="3">{{workshop.audience}}</td>
         </tr>
         <tr>
           <td>Location:</td>
-          <td>{{workshop.location}}</td>
+          <td colspan="3">{{workshop.location}}</td>
         </tr>
         <tr>
           <td>Number of people:</td>
-          <td>{{workshop.number}}</td>
+          <td colspan="3">{{workshop.number}}</td>
         </tr>
         <tr>
           <td>When:</td>
-          <td>{{workshop.when}}</td>
+          <td colspan="3">{{workshop.when}}</td>
         </tr>
         <tr>
           <td>Created by:</td>
-          <td>{{workshop.user.name}}</td>
+          <td colspan="3">{{workshop.user.name}}</td>
         </tr>
         <tr>
           <td>Enhance:</td>
+          <td>
+          <router-link :to="`/view/${workshop.id}/addSession`">
+            <el-button>Add Logic Sessions</el-button>
+          </router-link>
+        </td>
+
           <td><el-button>Add Agendas</el-button></td>
-          <td><el-button @click="remove" type="danger">Delete Workshop</el-button></td>
+          <td ><el-button @click="remove" type="danger">Delete Workshop</el-button></td>
         </tr>
       </tbody>
     </table>
 
-    <h4>Added Agendas</h4>
-    <table>
-      <thead>
-        <tr>
-          <th >#</th>
-          <th>Time</th>
-          <th >Agenda Name</th>
+    <div class="sessions">
+      <h4>Logical Sessions | Themes</h4>
+      <table>
+        <thead>
+          <tr>
+            <th >#</th>
+            <th>Time</th>
+            <th >Session Name</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr v-for="lsession in  workshop.lsessions">
+          <td>#</td>
+          <td>{{ lsession.session_time}}</td>
+          <td>{{lsession.session_name}}</td>
         </tr>
-      </thead>
-      <tbody>
-      <tr v-for="agenda in  workshop.agendas">
-        <td>#</td>
-        <td>{{ agenda.agenda_time}}</td>
-        <td>{{agenda.agenda_name}}</td>
-      </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="agenda">
+      <h4>Added Agendas</h4>
+      <table>
+        <thead>
+          <tr>
+            <th >#</th>
+            <th>Assigned time</th>
+            <th >Agenda Name</th>
+            <th>Logic Session</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr v-for="agenda in  workshop.agendas">
+          <td>#</td>
+          <td>{{agenda.agenda_name}}</td>
+          <td>10 minutes</td>
+          <td>Nill</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
 
   </div>
 </template>
@@ -69,9 +99,10 @@ export default {
       auth:Auth.state,
       workshop: {
         user: {},
-        agendas: []
-    }
-
+        agendas: [],
+        lsessions: []
+    },
+    isDeleting: false
     }
   },
 
@@ -85,11 +116,12 @@ export default {
 
   methods: {
     remove(){
+      this.isDeleting = false
       del(`/api/workshop/${this.$route.params.id}`)
       .then((res)=>{
         if(res.data.deleted){
           Flash.setSuccess('Workshop data has been deleted successfully');
-          this.$route.push('/view');
+          this.$router.push('/view');
         }
       })
     }

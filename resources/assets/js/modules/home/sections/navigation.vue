@@ -2,7 +2,8 @@
   <div>
 
     <div class="user">
-    <h4 class="heading">Instance Conferences</h4>
+      <img src="/img/cytonn.png" alt="">
+    <h4 class="heading">Instant Conferences</h4>
         <div class="navigation-home">
           <ul>
 

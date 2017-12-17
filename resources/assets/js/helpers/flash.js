@@ -1,11 +1,12 @@
+import { Message } from 'element-ui';
 export default {
   state: {
     success: null,
     error: null
   },
 
-  setSuccess(message){
-    this.state.success = message
+  setSuccess(msg){
+    this.state.success = msg
     setTimeout(()=>{
       this.removeSuccess()
     }, 3000)

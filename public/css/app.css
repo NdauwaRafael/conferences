@@ -91,21 +91,48 @@ article {
   padding-top: 50px;
 }
 
+.left-home-navigation .user .heading {
+  color: #fff;
+  font-size: 26px;
+  text-shadow: 3px 3px grey;
+  padding-bottom: 50px;
+}
+
+.left-home-navigation .user img {
+  width: 45%;
+  margin-left: 20%;
+}
+
 .left-home-navigation .navigation-home {
-  margin-left: -9%;
   text-align: left;
   min-height: 100vh;
+}
+
+.left-home-navigation .navigation-home ul {
+  margin-right: 15px;
 }
 
 .left-home-navigation .navigation-home ul li {
   list-style: none;
   padding: 15px;
-  background: rgba(0, 0, 0, 0.5);
-  color: #c5e1a5;
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffff;
   border-top: 1px solid #cccccccc;
   -webkit-box-shadow: 5px 5px 5px grey;
           box-shadow: 5px 5px 5px grey;
-  margin-top: 5px;
+  margin-top: 15px;
+}
+
+.left-home-navigation .navigation-home ul li:hover {
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.left-home-navigation .navigation-home ul li:active {
+  color: green;
 }
 
 .home-background {
@@ -162,6 +189,16 @@ article {
   -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 1px 1px rgba(255, 255, 255, 0.5);
           box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 1px 1px rgba(255, 255, 255, 0.5);
   padding: 10px;
+}
+
+.home-content .reveal {
+  padding: 20px;
+}
+
+.sessions {
+  padding: 10px;
+  -webkit-box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 5px 5px rgba(255, 255, 255, 0.5);
+          box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.5), 0 5px 5px rgba(255, 255, 255, 0.5);
 }
 
 @media only screen and (max-width: 40em) {
