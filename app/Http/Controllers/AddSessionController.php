@@ -8,15 +8,22 @@ use App\Agendas;
 use App\Lsessions;
 class AddSessionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  public function __construct()
+  {
+    $this->middleware('auth:api')
+    ->except('index', 'show');
+  }
+
+  public function index()
+  {
+    $sessionList = Lsessions::orderBy('created_at', 'desc')
+      ->get(['id','session_name', 'session_time','workshop_id']);
+
+      return response()
+      ->json([
+        'sessionList' => $sessionList
+      ]);
+  }
 
     /**
      * Show the form for creating a new resource.
@@ -53,10 +60,15 @@ class AddSessionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+     public function show($id)
+     {
+       $Lsessions=Lsessions::where('workshop_id', $id)->get();
+
+       return response()
+       ->json([
+         'Lsessions'=>$Lsessions
+       ]);
+     }
 
     /**
      * Show the form for editing the specified resource.

@@ -5,13 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Workshop;
 use App\Agendas;
-
+use App\Lsessions;
 class AddAgendaController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth:api')
+      ->except('index', 'show');
+    }
 
     public function index()
     {
-        //
+      $agendas = Agendas::orderBy('created_at', 'desc')
+        ->get(['id','agenda_name', 'agenda_duration']);
+
+        return response()
+        ->json([
+          'agenda' => $agendas
+        ]);
     }
 
 
@@ -42,7 +53,12 @@ class AddAgendaController extends Controller
 
     public function show($id)
     {
-        //
+      $agendas=Agendas::where('workshop_id', $id)->get();
+
+      return response()
+      ->json([
+        'agendas'=>$agendas
+      ]);
     }
 
 

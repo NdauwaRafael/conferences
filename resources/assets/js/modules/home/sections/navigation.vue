@@ -3,7 +3,7 @@
 
     <div class="user">
       <img src="/img/cytonn.png" alt="">
-    <h4 class="heading">Instant Conferences</h4>
+    <h4 class="heading">Rapid Conferences</h4>
         <div class="navigation-home">
           <ul>
 

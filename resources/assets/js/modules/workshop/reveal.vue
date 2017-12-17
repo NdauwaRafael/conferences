@@ -70,7 +70,10 @@
     </div>
 
     <div class="agenda">
-      <h4>Added Agendas</h4>
+      <h4>Added Agendas </h4>
+      <router-link :to="`/modify/${workshop.id}`">
+          <el-button type="success" plain>Arrange Agendas to Sessions</el-button>
+      </router-link>
       <table>
         <thead>
           <tr>

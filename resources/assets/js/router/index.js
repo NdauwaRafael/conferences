@@ -45,7 +45,7 @@ const router = new VueRouter({
         component: view
         },
         {
-        path:'/modify',
+        path:'/modify/:id',
         component: modify
         },
         {

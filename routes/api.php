@@ -24,4 +24,7 @@ Route::post('/logout', 'AuthController@logout');
 Route::post('/addSession', 'AddSessionController@store');
 Route::post('/addAgenda', 'AddAgendaController@store');
 
+
 Route::resource('workshop', 'WorkshopController');
+Route::resource('/agendaList', 'AddAgendaController');
+Route::resource('sessionList', 'AddSessionController');

@@ -59,17 +59,7 @@ export default {
   },
   methods: {
       create: function () {
-        if (JSON.parse(localStorage.getItem('workshoplist'))===null) {
-          var b = [];
-          localStorage.setItem('workshoplist', JSON.stringify(b));
-          var c = JSON.parse(localStorage.getItem('workshoplist'));
-          c.push(this.workshop_Frm);
-          localStorage.setItem('workshoplist', JSON.stringify(c));
-        }else{
-          var a = JSON.parse(localStorage.getItem('workshoplist'));
-          a.push(this.workshop_Frm);
-          localStorage.setItem('workshoplist', JSON.stringify(a));
-        }
+          
       }
           }
 }

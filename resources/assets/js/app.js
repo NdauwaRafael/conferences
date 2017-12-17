@@ -10,7 +10,9 @@ import store from './store';
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css';
+import VueDraggable from 'vue-draggable'
 
+Vue.use(VueDraggable)
 Vue.use(VueResource)
 Vue.use(ElementUI, {locale});
 const app = new Vue({

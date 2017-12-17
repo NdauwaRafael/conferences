@@ -4,61 +4,70 @@
 
       <div class="grid-x grid-margin-x">
         <div class="cell small-4 add-agenda">
-          <h5>Create Agenda For Event</h5>
-            <form>
-                <label>Agenda Name
-                    <input type="text" v-model="agendaForm.name" placeholder="Agenda Name">
-                </label>
-                <label>Agenda Duration
-                    <input type="number" v-model="agendaForm.duration" placeholder="Agenda Duration (Minutes)">
-                </label>
+          <h5>Uncategorised Agendas</h5>
+          <draggable>
+            <ul v-for="ag in agendas"  >
+              <li>{{ag.agenda_name}}</li>
+            </ul>
+          </draggable>
 
-                <label>
-                    <button @click="addAgenda" type="button" class="success button">Save</button>
-                </label>
-            </form>
         </div>
 
-        <div class="cell small-4 all-agendas">
-           <h5>All Agendas</h5>
+        <div class="cell small-8 all-agendas">
+           <h5>Agendas According to Categories</h5>
+            <div class="sessioncontent">
+                <!-- <div  v-for="ss in sessionLists" >
+                    <div>{{ss.session_name}}</div>
+                </div> -->
+                <ul v-for="ses in sessionLists"  >
+                  <li>{{ses.session_name}}</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="cell small-4 cat-agendas">
-          <h5>Categorised Agendas</h5>
-        </div>
       </div>
 
     </div>
 </template>
 
 <script>
-import ElInputNumber from "../../../../../node_modules/element-ui/packages/input-number/src/input-number.vue";
-
+import draggable from 'vuedraggable';
+import Auth from '../../store/auth'
+import {get, del} from '../../helpers/api'
+import Flash from '../../helpers/flash'
 export default {
-    components: {ElInputNumber},
+    components: {draggable},
 
     data(){
       return {
-        agendaForm: {
-          name: '',
-          duration: ''
-        }
+        auth:Auth.state,
+          agendas: [],
+          sessionLists: []
+
       }
     },
+    created(){
+      get(`/api/agendaList/${this.$route.params.id}`)
+      .then((res)=>{
+        this.agendas = res.data.agendas
+      })
+      .catch((err)=>{
+        this.$message.error(err.message);
+      });
+
+      get(`/api/sessionList/${this.$route.params.id}`)
+      .then((resp)=>{
+        this.sessionLists = resp.data.sessionList
+      })
+      .catch((err)=>{
+        this.$message.error(err.message);
+      })
+    },
     methods: {
-      addAgenda(){
-        if (JSON.parse(localStorage.getItem('agendas'))===null) {
-          var b = [];
-          localStorage.setItem('agendas', JSON.stringify(b));
-          var c = JSON.parse(localStorage.getItem('agendas'));
-          c.push(this.agendaForm);
-          localStorage.setItem('agendas', JSON.stringify(c));
-        }else{
-          var a = JSON.parse(localStorage.getItem('agendas'));
-          a.push(this.agendaForm);
-          localStorage.setItem('agendas', JSON.stringify(a));
-        }
+      updateSession(){
+
       }
+
     }
 }
 </script>
