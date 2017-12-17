@@ -136,6 +136,14 @@ footer, header, menu, nav, section, article{
   }
   .content {
     padding: 1%;
+
+    .navi{
+
+
+      }
+
+
+
   }
 
   .create-form {
@@ -212,9 +220,33 @@ Modify Categories
  box-shadow: inset 0 -5px 45px rgba(100,100,100,0.5), 0 5px 5px rgba(255,255,255,0.5);
 }
 
+/*======================
+Toggle Navigation Button
+=====================*/
+.toggle-nav-switch {
+  visibility: hidden;
+  position: absolute;
+}
+
 @media only screen and (max-width: 40em) {
 .left-home-navigation {
-  height: auto;
-  min-width: inherit;
+position: absolute;
+visibility: hidden;
 }
+
+.toggle-nav-switch {
+  visibility: visible;
+  position: relative;
+}
+
+}
+/*set nav to visisible*/
+.vi {
+  visibility: visible;
+}
+
+/*chanbe switch background color*/
+.clr {
+ background: rgba(192,192,192,0.6);
+ padding: 10px;
 }

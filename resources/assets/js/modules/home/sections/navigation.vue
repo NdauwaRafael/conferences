@@ -33,9 +33,9 @@
               <span>Notifications</span>
             </li>
 
-            <li>
+            <li @click.stop="logout">
               <i class="el-icon-setting" ></i>
-              <span>Settings</span>
+              <span >Logout</span>
             </li>
           </ul>
 
@@ -46,6 +46,24 @@
 </template>
 
 <script>
+import Flash from '../../../helpers/flash'
+import Auth from '../../../store/auth'
+import {post} from '../../../helpers/api'
 export default {
+methods: {
+  logout(){
+      post('/api/logout')
+          .then((res)=>{
+          if (res.data.logged_out){
+              Auth.remove()
+              Flash.setSuccess('You have successfully Logged Out!')
+              this.$router.push('/login')
+          }
+      })
+          .catch((err)=>{
+            console.log(err);
+          })
+  }
+}
 }
 </script>

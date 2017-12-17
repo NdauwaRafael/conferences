@@ -1,16 +1,20 @@
 <?php
-
+namespace App\Http\Middleware;
 namespace App\Http\Controllers;
-
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     // public function __construct(){
-    //   $this.middleware('auth:api')
+    //   $this.Middleware('auth:api')
     //   ->only('logout');
     // }
+    // public function __construct(Guard $auth)
+    //     {
+    //         $this->auth = $auth;
+    //     }
 
     public function register(Request $request)
     {
@@ -82,7 +86,8 @@ class AuthController extends Controller
                 ], 422); }
 
             public function logout(Request $request){
-                $user = $request->user();
+                $user = User::where('api_token', '!=', null)
+                ->first();
                 $user->api_token = null;
                 $user->save();
 

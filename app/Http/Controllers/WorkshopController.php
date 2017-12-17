@@ -66,6 +66,16 @@ class WorkshopController extends Controller
       ]);
     }
 
+    // public function viewC($uid)
+    // {
+    //   $workshop=Workshop::where('user_id', $uid)->get();
+    //
+    //   return response()
+    //   ->json([
+    //     'workshop'=>$workshop
+    //   ]);
+    // }
+
     public function edit($id, Request $request)
     {
       $form = $request->user()->workshop()

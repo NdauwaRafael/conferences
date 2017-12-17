@@ -3183,12 +3183,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
+  data: function data() {
+    return {
+      toggled: true
+    };
+  },
 
-  components: { leftnavigationhome: __WEBPACK_IMPORTED_MODULE_0__sections_navigation_vue___default.a }
+
+  components: { leftnavigationhome: __WEBPACK_IMPORTED_MODULE_0__sections_navigation_vue___default.a },
+
+  methods: {
+    toggleMn: function toggleMn() {
+      this.toggled = !this.toggled;
+    }
+  }
 });
 
 /***/ }),
@@ -3198,6 +3220,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
@@ -3246,7 +3271,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {
+        logout: function logout() {
+            var _this = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["c" /* post */])('/api/logout').then(function (res) {
+                if (res.data.logged_out) {
+                    __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].remove();
+                    __WEBPACK_IMPORTED_MODULE_0__helpers_flash__["a" /* default */].setSuccess('You have successfully Logged Out!');
+                    _this.$router.push('/login');
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }
+});
 
 /***/ }),
 
@@ -3944,6 +3988,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
 //
 //
 //
@@ -3977,12 +4022,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      workshops: []
+      workshops: [],
+      auth: __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].state
     };
   },
 
@@ -4029,43 +4076,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4085,19 +4095,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     toggleMenu: function toggleMenu() {
       this.toggled = !this.toggled;
-    },
-    logout: function logout() {
-      var _this = this;
-
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["c" /* post */])('/api/logout').then(function (res) {
-        if (res.data.logged_out) {
-          __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].remove();
-          __WEBPACK_IMPORTED_MODULE_0__helpers_flash__["a" /* default */].setSuccess('You have successfully Logged Out!');
-          _this.$router.push('/login');
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
     }
   },
   computed: {
@@ -5707,7 +5704,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -87923,14 +87920,68 @@ var render = function() {
     _c("div", { staticClass: "grid-x" }, [
       _c(
         "div",
-        { staticClass: "medium-6 large-3 cell left-home-navigation" },
+        {
+          staticClass: "medium-6 large-3 cell left-home-navigation",
+          class: { vi: _vm.toggled, vi: !_vm.toggled }
+        },
         [_c("leftnavigationhome")],
         1
       ),
       _vm._v(" "),
       _c("div", { staticClass: "medium-6 large-9 cell" }, [
         _c("div", { staticClass: "home-content" }, [
-          _c("div", { staticClass: "content" }, [_c("router-view")], 1)
+          _c(
+            "div",
+            { staticClass: "content" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "toggle-nav-switch",
+                  class: { clr: _vm.toggled, clr: !_vm.toggled }
+                },
+                [
+                  _c("ul", { staticClass: "tg-list" }, [
+                    _c(
+                      "li",
+                      { staticClass: "tg-list-item" },
+                      [
+                        _c("h7", [
+                          _vm.toggled
+                            ? _c("span", [_vm._v("Open")])
+                            : _c("span", [_vm._v("Close")]),
+                          _vm._v(" navigation")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "tgl tgl-skewed",
+                          attrs: { id: "cb3", type: "checkbox" }
+                        }),
+                        _vm._v(" "),
+                        _c("label", {
+                          staticClass: "tgl-btn",
+                          attrs: {
+                            "data-tg-off": "OFF",
+                            "data-tg-on": "ON",
+                            for: "cb3"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.toggleMn()
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("router-view")
+            ],
+            1
+          )
         ])
       ])
     ])
@@ -88548,98 +88599,6 @@ var render = function() {
         _vm._v("\n    " + _vm._s(_vm.flash.error) + "\n  ")
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "home-navigation ",
-          class: { "is-toggled": _vm.toggled, "not-toggled": !_vm.toggled }
-        },
-        [
-          _c("div", { staticClass: "grid-container navigation-child" }, [
-            _c("div", { staticClass: "right row" }, [
-              _c("div", { staticClass: "large-10 large-offset-2 columns" }, [
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
-                      _c("router-link", { attrs: { to: { path: "/" } } }, [
-                        _c("a", [_vm._v("Instant Conferences")])
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  !_vm.check
-                    ? _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { path: "/register" } } },
-                            [_c("a", [_vm._v("Register")])]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.check
-                    ? _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { path: "/login" } } },
-                            [_c("a", [_vm._v("Login")])]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.check
-                    ? _c("li", { staticClass: "logout-link" }, [
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                $event.stopPropagation()
-                                _vm.logout($event)
-                              }
-                            }
-                          },
-                          [_vm._v("Logout")]
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ])
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "toggle-nav" },
-        [
-          _c(
-            "el-button",
-            {
-              attrs: { type: "text", icon: "el-icon-d-arrow-right" },
-              on: {
-                click: function($event) {
-                  _vm.toggleMenu()
-                }
-              }
-            },
-            [_vm._v("Toggle Navigation")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
       _c("router-view")
     ],
     1
@@ -88909,7 +88868,22 @@ var render = function() {
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _vm._m(1)
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    _vm.logout($event)
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "el-icon-setting" }),
+                _vm._v(" "),
+                _c("span", [_vm._v("Logout")])
+              ]
+            )
           ],
           1
         )
@@ -88926,16 +88900,6 @@ var staticRenderFns = [
       _c("i", { staticClass: "el-icon-bell" }),
       _vm._v(" "),
       _c("span", [_vm._v("Notifications")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("i", { staticClass: "el-icon-setting" }),
-      _vm._v(" "),
-      _c("span", [_vm._v("Settings")])
     ])
   }
 ]
@@ -88967,36 +88931,38 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.workshops, function(workshop) {
           return _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v(_vm._s(workshop.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(workshop.when))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(workshop.event_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(workshop.theme))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(workshop.audience))]),
-              _vm._v(" "),
-              _c(
-                "td",
-                [
+            workshop.user_id == _vm.auth.user_id
+              ? _c("tr", [
+                  _c("td", [_vm._v(_vm._s(workshop.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(workshop.when))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(workshop.event_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(workshop.theme))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(workshop.audience))]),
+                  _vm._v(" "),
                   _c(
-                    "router-link",
-                    { attrs: { to: "/view/" + workshop.id } },
+                    "td",
                     [
                       _c(
-                        "el-button",
-                        { attrs: { type: "success", size: "small" } },
-                        [_vm._v("Reveal Details")]
+                        "router-link",
+                        { attrs: { to: "/view/" + workshop.id } },
+                        [
+                          _c(
+                            "el-button",
+                            { attrs: { type: "success", size: "small" } },
+                            [_vm._v("Reveal Details")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
                   )
-                ],
-                1
-              )
-            ])
+                ])
+              : _vm._e()
           ])
         })
       ],

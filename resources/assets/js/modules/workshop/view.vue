@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody v-for="workshop in workshops">
-    <tr>
+    <tr v-if="workshop.user_id == auth.user_id">
       <td>{{workshop.id}}</td>
       <td>{{workshop.when}}</td>
       <td>{{workshop.event_name}}</td>
@@ -33,10 +33,12 @@
 
 <script>
 import {get} from '../../helpers/api'
+import Auth from '../../store/auth'
 export default {
   data() {
       return {
         workshops: [],
+        auth:Auth.state,
       }
   },
 //   // computed:{
@@ -49,7 +51,7 @@ export default {
 // }
 
 created() {
-  get('/api/workshop')
+  get(`/api/workshop`)
   .then((res)=>{
     this.workshops = res.data.workshop
   })
