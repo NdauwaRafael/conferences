@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Agendas extends Model
 {
     protected $fillable = [
-      'agenda_name', 'agenda_time', 'agenda_duration'
+      'agenda_name', 'agenda_duration','workshop_id'
     ];
 
     // protected timestamps = false;
@@ -16,8 +16,8 @@ class Agendas extends Model
       {
         return [
           'agenda_name'=>'',
-          'agenda_time'=>'',
-          'agenda_duration'=>''
+          'agenda_duration'=>'',
+          'workshop_id' => ''
         ];
       }
 }

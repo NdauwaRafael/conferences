@@ -38,7 +38,12 @@
           </router-link>
         </td>
 
-          <td><el-button>Add Agendas</el-button></td>
+          <td>
+            <router-link :to="`/view/${workshop.id}/AddAgenda`">
+              <el-button>Add Agendas</el-button>
+            </router-link>
+            </td>
+
           <td ><el-button @click="remove" type="danger">Delete Workshop</el-button></td>
         </tr>
       </tbody>
@@ -70,8 +75,8 @@
         <thead>
           <tr>
             <th >#</th>
-            <th>Assigned time</th>
-            <th >Agenda Name</th>
+            <th>Assigned Name</th>
+            <th >Agenda Duration</th>
             <th>Logic Session</th>
           </tr>
         </thead>
@@ -79,7 +84,7 @@
         <tr v-for="agenda in  workshop.agendas">
           <td>#</td>
           <td>{{agenda.agenda_name}}</td>
-          <td>10 minutes</td>
+          <td>{{agenda.agenda_duration}} Minutes</td>
           <td>Nill</td>
         </tr>
       </tbody>

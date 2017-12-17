@@ -38,7 +38,6 @@ class WorkshopTableSeeder extends Seeder
           Agendas::create([
             'workshop_id' => $workshop -> id,
             'agenda_name' => $faker->catchPhrase,
-            'agenda_time' => date('H:i:s'),
             'agenda_duration' => mt_rand(15, 60)
           ]);
         }

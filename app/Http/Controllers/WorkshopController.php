@@ -97,7 +97,7 @@ class WorkshopController extends Controller
     {
       $form = $request->user()->workshop()
       ->with(['agendas'=>function($query){
-        $query ->get(['id', 'agenda_name', 'agenda_time', 'agenda_duration']);
+        $query ->get(['id', 'agenda_name', 'agenda_duration']);
       }]);
 
       return response()
@@ -121,7 +121,6 @@ class WorkshopController extends Controller
         'time' => 'required',
         'agendas.*.id'=>'integer|exists:workshop_agendas',
         'agendas.*.agenda_name' => 'required',
-        'agendas.*.agenda_time' => 'required',
         'agendas.*.agenda_duration' => 'required',
         'lsessions.*.id'=>'integer|exists:workshop_lsessions',
         'lsessions.*.lsession_name' => 'required',

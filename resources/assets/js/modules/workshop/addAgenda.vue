@@ -7,17 +7,14 @@
       <div class="large-8 cell">
         <form>
             <label>Agenda Name
-                <input type="text" v-model="sessionForm.session_name" placeholder="Session Name">
+                <input type="text" v-model="agendaForm.agenda_name" placeholder="Agenda Name">
             </label>
             <label>Assign Duration (Minutes)
-                <input type="number" v-model="sessionForm.session_time" placeholder="Session Time">
-            </label>
-            <label>Agenda Description
-                <textarea v-model="sessionForm.description" placeholder="Sesstion Duration (Minutes)" rows="8" cols="80"></textarea>
+                <input type="number" v-model="agendaForm.agenda_duration" placeholder="Agenda Duration">
             </label>
 
             <label>
-                <el-button @click="addAgenda" type="success">Add Session</el-button>
+                <el-button @click="addAgenda" type="success">Add Agenda</el-button>
             </label>
         </form>
       </div>
@@ -47,18 +44,18 @@ export default {
     }
   },
   created(){
- this.sessionForm.workshop_id = this.$route.params.id
+ this.agendaForm.workshop_id = this.$route.params.id
   },
 
   methods: {
 
-    addSession(){
+    addAgenda(){
 
-      post('/api/addSession', this.sessionForm)
+      post('/api/addAgenda', this.agendaForm)
         .then((res)=>{
           if (res.data.added) {
               this.$message({
-                message: 'Logical session has been successfully added',
+                message: 'Agenda has been successfully added',
                 type: 'success'
               });
               this.$router.push(`/view/${this.$route.params.id}`)

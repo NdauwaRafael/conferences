@@ -10,6 +10,7 @@ import view from '../modules/workshop/view.vue';
 import modify from '../modules/workshop/modify.vue';
 import WorkshopReveal from '../modules/workshop/reveal.vue';
 import AddSession from '../modules/workshop/AddSession.vue';
+import AddAgenda from '../modules/workshop/AddAgenda.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -54,6 +55,11 @@ const router = new VueRouter({
         {
         path:'/view/:id/AddSession',
         component: AddSession,
+        mete: {mode: 'edit'}
+        },
+        {
+        path:'/view/:id/AddAgenda',
+        component: AddAgenda,
         mete: {mode: 'edit'}
         }
       ]
