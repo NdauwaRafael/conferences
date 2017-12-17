@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Workshop;
 use App\Agendas;
 use App\Lsessions;
+use App\User;
 class WorkshopController extends Controller
 {
     public function __construct()
@@ -16,7 +17,7 @@ class WorkshopController extends Controller
 
     public function index(){
       $workshop = Workshop::orderBy('created_at', 'desc')
-        ->get(['id','event_name', 'theme', 'goal', 'audience', 'number', 'location', 'user_id', 'when', 'time']);
+        ->get(['id','event_name', 'theme', 'audience', 'number', 'location', 'user_id', 'when']);
 
         return response()
         ->json([
@@ -35,43 +36,15 @@ class WorkshopController extends Controller
       $this->validate($request, [
         'event_name'=> 'required | max:120',
         'theme'=> 'required | max:120',
-        'goal'=> 'required | max:120',
         'audience' => 'required | max:120',
         'number'=> 'required | max:12',
         'location' => 'required | max:120',
-        'user_id' => 'required | max:12',
-        'when' => 'required',
-        'time' => 'required',
-
-        'agendas.*.agenda_name' => 'required',
-        'agendas.*.agenda_time' => 'required',
-        'agendas.*.agenda_duration' => 'required',
-
-        'lsessions.*.sessions_name' => 'required',
-        'lsessionss.*.session_time' => 'required'
+        'when' => 'required'
       ]);
-
-      $agendas = [];
-
-      foreach ($request->agendas as $agenda) {
-          $agendas[] = new WorkshopAgenda($request);
-      }
-
-      $lsessions = [];
-
-      foreach ($request->lsessions as $lsession) {
-          $lsessions[] = new WorkshopLsession($request);
-      }
 
       $workshop = new Workshop($request->all());
       $request->user()
       ->workshop()->save($workshop);
-
-      $workshop->agendas()
-      ->saveMany($agendas);
-
-      $workshop->lsessions()
-      ->saveMany($lsessions);
 
       return response()
        ->json([

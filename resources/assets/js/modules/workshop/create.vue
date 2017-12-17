@@ -9,22 +9,22 @@
 
         <form>
             <label>Event Name
-                <input type="text" v-model="workshop_Frm.eventName" placeholder="Event Name">
+                <input type="text" v-model="workshop_Frm.event_name" placeholder="Event Name">
             </label>
             <label>Event Theme
-                <input type="text" v-model="workshop_Frm.eventTheme" placeholder="Event Theme">
+                <input type="text" v-model="workshop_Frm.theme" placeholder="Event Theme">
             </label>
             <label>For Who?
-                <input type="text" v-model="workshop_Frm.eventAudience" placeholder="Tageted participants">
+                <input type="text" v-model="workshop_Frm.audience" placeholder="Tageted participants">
             </label>
             <label>Attendants Number
-                <input type="text" v-model="workshop_Frm.eventNumber" placeholder="Number of Attendants">
+                <input type="text" v-model="workshop_Frm.number" placeholder="Number of Attendants">
             </label>
             <label>Location
-                <input type="text" v-model="workshop_Frm.eventLocation" placeholder="Event Location">
+                <input type="text" v-model="workshop_Frm.location" placeholder="Event Location">
             </label>
             <label>When
-                <input type="date" v-model="workshop_Frm.eventDate" placeholder="Agenda Duration (Minutes)">
+                <input type="date" v-model="workshop_Frm.when" placeholder="Agenda Duration (Minutes)">
             </label>
 
             <label>
@@ -41,25 +41,37 @@
 </template>
 
 <script>
+import Auth from '../../store/auth'
+import {post} from '../../helpers/api'
 export default {
   data(){
       return {
           workshop_Frm: {
-              eventName: '',
-              eventTheme: '',
-              eventGoal: '',
-              eventAudience: '',
-              eventNumber: '',
-              eventLocation: '',
-              eventDate: ''
-
-          }
+            event_name: '',
+            theme: '',
+            audience: '',
+            number: '',
+            location: '',
+            when: ''
+                    }
 
       }
   },
   methods: {
       create: function () {
-          
+        post('/api/workshop', this.workshop_Frm)
+        .then((res)=>{
+          if (res.data.saved) {
+             this.$router.push('/view')
+             this.$message({
+             message: 'You have successfully Created an Event.',
+             type: 'success'
+           });
+          }
+        })
+        .catch((errr)=>{
+          this.$message.error(errr.message);
+        })
       }
           }
 }

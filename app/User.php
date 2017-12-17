@@ -29,6 +29,6 @@ class User extends Authenticatable
 
     public function workshop($value='')
     {
-      return $this->hasMany(Worker::class);
+      return $this->hasMany(Workshop::class);
     }
 }

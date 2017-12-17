@@ -33,13 +33,11 @@ class Workshop extends Model
           'id'=>'',
           'event_name'=>'',
           'theme'=>'',
-          'goal'=>'',
           'audience'=>'',
           'number'=>'',
           'location'=>'',
           'user_id'=>'',
           'when'=>'',
-          'time'=>'',
           'agendas'=>[
             Agendas::form()
           ],

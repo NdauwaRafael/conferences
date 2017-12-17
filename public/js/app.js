@@ -3625,6 +3625,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
@@ -3667,27 +3669,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            workshop_Frm: {
-                eventName: '',
-                eventTheme: '',
-                eventGoal: '',
-                eventAudience: '',
-                eventNumber: '',
-                eventLocation: '',
-                eventDate: ''
+  data: function data() {
+    return {
+      workshop_Frm: {
+        event_name: '',
+        theme: '',
+        audience: '',
+        number: '',
+        location: '',
+        when: ''
+      }
 
-            }
+    };
+  },
 
-        };
-    },
+  methods: {
+    create: function create() {
+      var _this = this;
 
-    methods: {
-        create: function create() {}
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["c" /* post */])('/api/workshop', this.workshop_Frm).then(function (res) {
+        if (res.data.saved) {
+          _this.$router.push('/view');
+          _this.$message({
+            message: 'You have successfully Created an Event.',
+            type: 'success'
+          });
+        }
+      }).catch(function (errr) {
+        _this.$message.error(errr.message);
+      });
     }
+  }
 });
 
 /***/ }),
@@ -5646,7 +5662,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -88214,18 +88230,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.workshop_Frm.eventName,
-                  expression: "workshop_Frm.eventName"
+                  value: _vm.workshop_Frm.event_name,
+                  expression: "workshop_Frm.event_name"
                 }
               ],
               attrs: { type: "text", placeholder: "Event Name" },
-              domProps: { value: _vm.workshop_Frm.eventName },
+              domProps: { value: _vm.workshop_Frm.event_name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.workshop_Frm, "eventName", $event.target.value)
+                  _vm.$set(_vm.workshop_Frm, "event_name", $event.target.value)
                 }
               }
             })
@@ -88238,18 +88254,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.workshop_Frm.eventTheme,
-                  expression: "workshop_Frm.eventTheme"
+                  value: _vm.workshop_Frm.theme,
+                  expression: "workshop_Frm.theme"
                 }
               ],
               attrs: { type: "text", placeholder: "Event Theme" },
-              domProps: { value: _vm.workshop_Frm.eventTheme },
+              domProps: { value: _vm.workshop_Frm.theme },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.workshop_Frm, "eventTheme", $event.target.value)
+                  _vm.$set(_vm.workshop_Frm, "theme", $event.target.value)
                 }
               }
             })
@@ -88262,22 +88278,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.workshop_Frm.eventAudience,
-                  expression: "workshop_Frm.eventAudience"
+                  value: _vm.workshop_Frm.audience,
+                  expression: "workshop_Frm.audience"
                 }
               ],
               attrs: { type: "text", placeholder: "Tageted participants" },
-              domProps: { value: _vm.workshop_Frm.eventAudience },
+              domProps: { value: _vm.workshop_Frm.audience },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(
-                    _vm.workshop_Frm,
-                    "eventAudience",
-                    $event.target.value
-                  )
+                  _vm.$set(_vm.workshop_Frm, "audience", $event.target.value)
                 }
               }
             })
@@ -88290,18 +88302,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.workshop_Frm.eventNumber,
-                  expression: "workshop_Frm.eventNumber"
+                  value: _vm.workshop_Frm.number,
+                  expression: "workshop_Frm.number"
                 }
               ],
               attrs: { type: "text", placeholder: "Number of Attendants" },
-              domProps: { value: _vm.workshop_Frm.eventNumber },
+              domProps: { value: _vm.workshop_Frm.number },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.workshop_Frm, "eventNumber", $event.target.value)
+                  _vm.$set(_vm.workshop_Frm, "number", $event.target.value)
                 }
               }
             })
@@ -88314,22 +88326,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.workshop_Frm.eventLocation,
-                  expression: "workshop_Frm.eventLocation"
+                  value: _vm.workshop_Frm.location,
+                  expression: "workshop_Frm.location"
                 }
               ],
               attrs: { type: "text", placeholder: "Event Location" },
-              domProps: { value: _vm.workshop_Frm.eventLocation },
+              domProps: { value: _vm.workshop_Frm.location },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(
-                    _vm.workshop_Frm,
-                    "eventLocation",
-                    $event.target.value
-                  )
+                  _vm.$set(_vm.workshop_Frm, "location", $event.target.value)
                 }
               }
             })
@@ -88342,18 +88350,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.workshop_Frm.eventDate,
-                  expression: "workshop_Frm.eventDate"
+                  value: _vm.workshop_Frm.when,
+                  expression: "workshop_Frm.when"
                 }
               ],
               attrs: { type: "date", placeholder: "Agenda Duration (Minutes)" },
-              domProps: { value: _vm.workshop_Frm.eventDate },
+              domProps: { value: _vm.workshop_Frm.when },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.workshop_Frm, "eventDate", $event.target.value)
+                  _vm.$set(_vm.workshop_Frm, "when", $event.target.value)
                 }
               }
             })
