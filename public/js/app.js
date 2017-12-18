@@ -3794,6 +3794,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3820,7 +3823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
 
     Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* get */])('/api/sessionList/' + this.$route.params.id).then(function (resp) {
-      _this.sessionLists = resp.data.sessionList;
+      _this.sessionLists = resp.data.Lsessions;
     }).catch(function (err) {
       _this.$message.error(err.message);
     });
@@ -5644,7 +5647,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -88225,6 +88228,16 @@ var render = function() {
           _vm._v(" "),
           _c(
             "draggable",
+            {
+              on: {
+                start: function($event) {
+                  _vm.drag = true
+                },
+                end: function($event) {
+                  _vm.drag = false
+                }
+              }
+            },
             _vm._l(_vm.agendas, function(ag) {
               return _c("ul", [_c("li", [_vm._v(_vm._s(ag.agenda_name))])])
             })
@@ -88239,8 +88252,16 @@ var render = function() {
         _c(
           "div",
           { staticClass: "sessioncontent" },
-          _vm._l(_vm.sessionLists, function(ses) {
-            return _c("ul", [_c("li", [_vm._v(_vm._s(ses.session_name))])])
+          _vm._l(_vm.sessionLists, function(ss) {
+            return _c(
+              "div",
+              [
+                _c("draggable", [
+                  _c("div", [_c("h5", [_vm._v(_vm._s(ss.session_name))])])
+                ])
+              ],
+              1
+            )
           })
         )
       ])

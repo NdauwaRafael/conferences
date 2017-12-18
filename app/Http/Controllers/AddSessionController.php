@@ -21,7 +21,7 @@ class AddSessionController extends Controller
 
       return response()
       ->json([
-        'sessionList' => $sessionList
+        'Lsessions' => $sessionList
       ]);
   }
 

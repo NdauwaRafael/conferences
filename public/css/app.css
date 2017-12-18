@@ -253,6 +253,19 @@ Toggle Navigation Button
   padding: 10px;
 }
 
+/*logical sessions*/
+
+.sessioncontent div {
+  padding-bottom: 5%;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.sessioncontent div h5 {
+  font-size: 1.3em;
+  background-color: #eeee;
+}
+
 html,
 body {
   min-height: 100% !important;

@@ -5,7 +5,7 @@
       <div class="grid-x grid-margin-x">
         <div class="cell small-4 add-agenda">
           <h5>Uncategorised Agendas</h5>
-          <draggable>
+          <draggable @start="drag=true" @end="drag=false">
             <ul v-for="ag in agendas"  >
               <li>{{ag.agenda_name}}</li>
             </ul>
@@ -16,12 +16,15 @@
         <div class="cell small-8 all-agendas">
            <h5>Agendas According to Categories</h5>
             <div class="sessioncontent">
-                <!-- <div  v-for="ss in sessionLists" >
-                    <div>{{ss.session_name}}</div>
-                </div> -->
-                <ul v-for="ses in sessionLists"  >
-                  <li>{{ses.session_name}}</li>
-                </ul>
+                <div  v-for="ss in sessionLists" >
+                  <draggable>
+
+                    <div>
+                      <h5>{{ss.session_name}}</h5>
+                    </div>
+                  </draggable>
+                </div>
+
             </div>
         </div>
 
@@ -57,7 +60,8 @@ export default {
 
       get(`/api/sessionList/${this.$route.params.id}`)
       .then((resp)=>{
-        this.sessionLists = resp.data.sessionList
+        this.sessionLists = resp.data.Lsessions
+
       })
       .catch((err)=>{
         this.$message.error(err.message);

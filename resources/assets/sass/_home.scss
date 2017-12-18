@@ -250,3 +250,17 @@ visibility: hidden;
  background: rgba(192,192,192,0.6);
  padding: 10px;
 }
+
+/*logical sessions*/
+.sessioncontent {
+  div {
+    padding-bottom: 5%;
+    background: #fff;
+    margin-bottom: 10px;
+
+    h5{
+      font-size: 1.3em;
+      background-color: #eeee;
+    }
+  }
+}
